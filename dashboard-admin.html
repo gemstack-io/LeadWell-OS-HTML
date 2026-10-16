@@ -1,0 +1,1602 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Alpine.js (Must be in <head>) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style type="text/tailwindcss">
+</style>
+</head>
+<script>
+document.addEventListener('alpine:initialized', () => {
+lucide.createIcons();
+});
+
+// Re-render icons on Alpine changes
+document.addEventListener('alpine:updated', () => {
+lucide.createIcons();
+});
+</script>  
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 antialiased min-h-screen flex" x-data="{ expanded: false }">
+
+
+
+
+<!-- ========================================== -->
+<!-- EXPANDABLE VERTICAL NAV BAR (LEFT STRIP)   -->
+<!-- ========================================== -->
+<aside 
+class="bg-white border-r border-slate-200 flex flex-col justify-between py-4 fixed top-0 bottom-0 left-0 z-30 transition-all duration-300 ease-in-out shadow-xs overflow-x-hidden"
+:class="expanded ? 'w-64' : 'w-16'">
+
+<!-- Top Section: Logo & Navigation -->
+<div class="flex flex-col space-y-6 w-full px-3">
+
+<!-- Brand Logo & Header Toggle -->
+<div class="flex items-center justify-between w-full h-10">
+<a href="dashboard.html" class="w-10 h-10 min-w-[2.5rem] p-1 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm hover:bg-blue-900 transition-colors">
+<!-- Logo Graphic Here -->
+
+<svg class="fill-sky-50" width="2em" height="2em" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g id="#000000ff">
+<path opacity="1.00" d=" M 103.82 0.00 L 107.59 0.00 C 114.57 0.87 120.59 6.84 120.93 13.96 C 121.12 22.64 120.93 31.32 121.01 40.00 C 161.00 40.00 201.00 40.00 240.99 39.99 C 240.82 35.18 240.84 29.91 244.06 25.97 C 248.61 19.68 258.20 18.09 264.50 22.68 C 267.82 24.86 269.78 28.47 270.84 32.20 C 272.77 27.05 276.23 21.97 281.92 20.60 C 290.61 17.79 300.29 24.69 300.99 33.68 C 301.69 27.15 306.78 21.36 313.32 20.26 C 320.04 18.90 327.33 22.92 329.82 29.30 C 331.32 32.66 330.97 36.42 331.01 39.99 C 351.00 40.00 371.00 40.00 390.99 39.99 C 391.07 31.31 390.88 22.61 391.07 13.93 C 391.39 6.97 397.15 1.28 403.83 0.00 L 407.58 0.00 C 414.56 0.87 420.57 6.81 420.92 13.93 C 421.12 22.61 420.93 31.31 421.00 39.99 C 432.70 40.03 444.39 39.96 456.09 40.02 C 461.69 40.02 467.12 43.44 469.49 48.53 C 472.92 55.18 470.19 64.05 463.76 67.78 C 460.86 69.61 457.38 70.14 454.01 70.02 C 443.01 69.98 432.01 70.00 421.01 70.01 C 421.00 127.33 421.00 184.66 421.00 241.99 C 441.36 242.02 461.71 241.97 482.06 242.02 C 492.32 241.93 502.34 247.59 507.60 256.39 C 510.00 260.15 511.16 264.52 512.00 268.86 L 512.00 274.87 C 511.09 280.98 508.79 286.97 504.66 291.62 C 498.85 298.45 489.88 302.26 480.95 302.00 C 330.99 302.00 181.02 302.00 31.06 302.00 C 21.19 302.34 11.35 297.55 5.64 289.48 C 2.52 285.30 0.92 280.25 0.00 275.17 L 0.00 269.08 C 0.78 264.42 2.11 259.77 4.76 255.81 C 10.12 247.35 19.91 241.93 29.94 242.02 C 50.29 241.97 70.64 242.02 91.00 241.99 C 91.00 184.66 91.00 127.33 90.99 70.00 C 84.33 70.00 77.67 70.00 71.01 70.00 C 70.93 78.71 71.13 87.42 70.92 96.13 C 70.51 103.69 63.62 110.08 56.05 109.98 C 42.68 110.01 29.30 110.02 15.93 109.98 C 8.34 110.08 1.47 103.64 1.04 96.06 C 0.30 88.11 6.94 80.44 14.92 80.07 C 23.61 79.88 32.30 80.07 40.99 79.99 C 41.06 71.31 40.89 62.61 41.07 53.93 C 41.43 46.35 48.36 39.90 55.94 40.02 C 67.62 39.96 79.31 40.03 91.00 39.99 C 91.07 31.30 90.88 22.60 91.07 13.91 C 91.41 6.96 97.16 1.28 103.82 0.00 M 121.00 70.00 C 121.00 127.33 121.00 184.66 121.00 242.00 C 211.00 242.00 301.00 242.00 391.00 242.00 C 391.00 184.66 391.00 127.33 390.99 70.00 C 371.00 70.00 351.00 70.00 331.00 70.00 C 331.99 77.38 329.23 85.99 321.74 88.80 C 313.11 92.83 302.29 86.41 301.09 77.09 C 299.76 82.36 296.37 87.40 290.97 89.09 C 282.61 92.46 272.17 86.24 271.32 77.22 C 270.61 88.12 271.18 99.07 271.00 110.00 C 284.34 110.02 297.68 109.98 311.02 110.01 C 319.01 109.86 326.17 117.02 325.98 125.01 C 326.09 132.00 320.76 138.24 314.03 139.77 C 311.32 158.84 308.62 177.91 305.85 196.97 C 304.98 204.19 298.34 210.10 291.05 209.97 C 267.69 210.02 244.34 210.02 220.98 209.97 C 213.75 210.08 207.06 204.29 206.18 197.10 C 203.40 178.01 200.66 158.91 198.00 139.80 C 191.66 138.29 186.41 132.70 186.07 126.09 C 185.26 118.15 191.91 110.50 199.85 110.07 C 213.56 109.90 227.28 110.05 241.00 110.00 C 241.00 96.66 241.00 83.33 241.00 70.00 C 201.00 70.00 161.00 70.00 121.00 70.00 Z" />
+<path opacity="1.00" d=" M 41.10 332.87 C 43.93 331.77 47.02 332.01 50.00 331.99 C 87.00 332.01 124.00 331.99 161.00 332.00 C 161.00 345.33 161.00 358.66 160.99 372.00 C 117.66 372.00 74.33 372.00 31.00 372.00 C 31.01 363.65 30.98 355.31 31.01 346.97 C 30.96 340.77 35.20 334.81 41.10 332.87 Z" />
+<path opacity="1.00" d=" M 191.00 332.01 C 234.33 332.00 277.67 332.00 321.00 332.01 C 321.00 345.33 321.00 358.66 321.00 372.00 C 277.66 372.00 234.33 372.00 191.01 372.00 C 191.00 358.67 191.00 345.34 191.00 332.01 Z" />
+<path opacity="1.00" d=" M 351.01 332.00 C 389.35 332.00 427.69 331.99 466.03 332.01 C 473.63 331.89 480.55 338.35 480.93 345.94 C 481.09 354.62 480.96 363.31 481.00 372.00 C 437.67 372.00 394.33 372.00 351.00 372.00 C 351.00 358.66 350.99 345.33 351.01 332.00 Z" />
+<path opacity="1.00" d=" M 31.01 402.00 C 47.67 402.00 64.33 402.00 81.00 402.00 C 81.00 415.33 81.00 428.66 80.99 442.00 C 64.33 442.00 47.67 442.00 31.00 442.00 C 31.00 428.66 31.00 415.33 31.01 402.00 Z" />
+<path opacity="1.00" d=" M 111.00 402.00 C 154.34 402.00 197.67 401.99 241.00 402.01 C 241.00 415.34 241.00 428.66 241.00 442.00 C 197.66 442.00 154.33 442.00 111.00 442.00 C 111.00 428.66 111.00 415.33 111.00 402.00 Z" />
+<path opacity="1.00" d=" M 271.00 402.01 C 314.33 401.99 357.66 402.00 401.00 402.00 C 401.00 415.33 401.00 428.66 401.00 442.00 C 357.67 442.00 314.33 442.00 271.00 441.99 C 271.00 428.66 271.00 415.33 271.00 402.01 Z" />
+<path opacity="1.00" d=" M 431.00 402.00 C 447.67 402.00 464.33 402.00 481.00 402.00 C 481.00 415.33 481.00 428.66 481.00 441.99 C 464.33 442.00 447.67 442.00 431.00 441.99 C 431.00 428.66 431.00 415.33 431.00 402.00 Z" />
+<path opacity="1.00" d=" M 31.00 472.01 C 74.33 472.00 117.66 472.00 160.99 472.01 C 161.01 485.34 161.00 498.67 161.00 512.00 L 44.46 512.00 C 37.46 511.13 31.41 505.18 31.07 498.04 C 30.90 489.37 31.05 480.68 31.00 472.01 Z" />
+<path opacity="1.00" d=" M 191.01 472.01 C 234.34 472.00 277.66 472.00 320.99 472.01 C 321.01 485.34 321.00 498.67 321.00 512.00 L 191.00 512.00 C 191.00 498.67 190.99 485.34 191.01 472.01 Z" />
+<path opacity="1.00" d=" M 351.01 472.00 C 394.34 472.00 437.66 472.00 480.99 472.00 C 480.95 480.68 481.11 489.37 480.92 498.05 C 480.57 505.16 474.58 511.08 467.63 512.00 L 351.00 512.00 C 351.00 498.67 350.99 485.34 351.01 472.00 Z" />
+</g>
+</svg>
+</a>
+<span x-show="expanded" class="font-bold text-slate-800 text-base tracking-tight whitespace-nowrap overflow-hidden transition-all duration-300">
+LeadWell Pro
+</span>
+<!-- Expand Toggle Button (Hidden when sidebar is collapsed) -->
+<button 
+x-show="expanded"
+@click="expanded = !expanded" 
+class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors">
+<i data-lucide="panel-left-close" class="w-5 h-5 transition-transform duration-300" :class="{ 'rotate-180': !expanded }"></i>
+</button>
+</div>
+
+<!-- Navigation Links -->
+<!-- Navigation Links matching Wireframe Icons -->
+<nav class="flex flex-col space-y-1.5 w-full">
+
+<!-- 1. Dashboard (Gauge / Meter icon) -->
+<a href="dashboard.html" class="group relative flex items-center h-10 px-2.5 rounded-lg bg-blue-50 text-blue-600 transition-colors">
+<i data-lucide="gauge" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Dashboard</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Dashboard
+</span>
+</a>
+
+<!-- 2. Leads (Megaphone / Bullhorn icon) -->
+<a href="leads.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="megaphone" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Leads</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Leads
+</span>
+</a>
+
+<!-- 3. Projects (Briefcase icon) -->
+<a href="projects.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="briefcase" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Projects</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Projects
+</span>
+</a>
+
+<!-- NEW ITEM: Campaigns (Bar Chart / Activity icon) -->
+<a href="campaigns.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="bar-chart-3" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Campaigns</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Campaigns
+</span>
+</a>
+
+<!-- 4. Team (Users icon) -->
+<a href="team.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="users" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Team</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Team
+</span>
+</a>
+
+
+<!-- 5. Archives (Folder icon) -->
+<a href="archives.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="folders" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Archives</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Archives
+</span>
+</a>
+
+<!-- 6. CSV Upload (File-Spreadsheet / Document Upload icon) -->
+<a href="csv-upload.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="file-spreadsheet" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">CSV Upload</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+CSV Upload
+</span>
+</a>
+
+<!-- NEW ITEM: Reports & Analytics (Trending Up icon) -->
+<a href="analytics.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="line-chart" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Analytics</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Analytics
+</span>
+</a>
+
+</nav>
+</div>
+
+<!-- Bottom Section: Settings & User Profile -->
+<div class="flex flex-col space-y-1.5 w-full px-3">
+
+<!-- Account (User Cog / User Gear icon) -->
+<a href="account.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="user-cog" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Account</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Account
+</span>
+</a>
+
+<!-- Settings (Gear icon) -->
+<a href="settings.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="settings" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Settings</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Settings
+</span>
+</a>
+</div>
+</aside>
+
+<!-- END SIDE MENU AREA -->
+
+
+<!-- START TOP BAR AREA -->
+
+<div 
+class="flex-1 flex flex-col min-h-screen transition-all duration-300 ease-in-out w-full min-w-0"
+:class="expanded ? 'pl-64' : 'pl-16'">
+
+<!-- STICKY HEADER -->
+<header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+
+<!-- Left side: Expand toggle button on header + Search -->
+<div class="flex items-center space-x-4 flex-1 max-w-md">
+<!-- Toggle button on top header bar -->
+<button 
+@click="expanded = !expanded" 
+class="p-2 rounded-lg text-blue-500 hover:bg-blue-100 hover:text-blue-800 transition-colors">
+<i data-lucide="menu" class="w-5 h-5"></i>
+</button>
+
+<div class="relative w-full">
+<i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+<input type="text" placeholder="Search leads, projects, or team members..." class="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
+</div>
+</div>
+
+<!-- Right Header Actions Container -->
+<div class="flex items-center space-x-3" 
+     x-data="{
+              // Temporary Prototype Navigation Group (Removed in final React build)
+        prototypeIcons: [
+                { id: 'project-control', label: 'Project Control', icon: 'sliders-horizontal', href: 'project-control.html' },
+        { id: 'project-checklist', label: 'Project Checklist', icon: 'list-checks', href: 'project-checklist.html' },
+        { id: 'project-review', label: 'Project Review', icon: 'circle-dashed-check', href: 'project-review.html' },
+                { id: 'login-page', label: 'User Login View', icon: 'key-round', href: 'login.html' },
+        { id: 'team-single', label: 'Single Team Member View', icon: 'user', href: 'team-member.html' },
+        { id: 'lead-single', label: 'Single Lead View', icon: 'megaphone', href: 'single-lead.html' },
+          { id: 'client-single', label: 'Single Client View', icon: 'file-user', href: 'single-client.html' },
+           { id: 'project-single', label: 'Single Project View', icon: 'folder-git-2', href: 'single-project.html' },
+            { id: 'niche-targeting', label: 'Niche and Targeting', icon: 'target', href: 'niche.html'},
+             { id: 'proposals', label: 'Proposals', icon: 'hand-helping', href: 'proposals.html'},
+            { id: 'invoices', label: 'Invoices and Billing', icon: 'receipt-text', href: 'invoices.html' }
+
+        ],
+
+       // Permanent Header Actions Group (Kept in final build)
+        permanentIcons: [
+         { id: 'money-payroll', label: 'Notifications', icon: 'circle-dollar-sign', href: 'payroll.html' },
+          { id: 'bell-notifications', label: 'Notifications', icon: 'bell', href: '#', count: 3 },
+          { id: 'envelope-messages', label: 'Messages', icon: 'mail', href: 'message.html', count: 5 }
+        ]
+     }">
+
+  <!-- GROUP 1: Prototype Nav Icons (Temporary) -->
+  <div class="flex items-center space-x-1 pr-2 border-r border-slate-200">
+    <template x-for="item in prototypeIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors relative group">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+      </a>
+    </template>
+  </div>
+
+  <!-- GROUP 2: Permanent Header Icons (Bell Notifications & Message Envelope with Floating Badges) -->
+  <div class="flex items-center space-x-1 pr-1">
+    <template x-for="item in permanentIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors relative">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+        
+        <!-- Floating Counter Badge -->
+        <span x-show="item.count > 0" 
+              class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white leading-none shadow-2xs"
+              x-text="item.count">
+        </span>
+      </a>
+    </template>
+  </div>
+
+  <!-- New Lead Action Button -->
+  <a href="new-lead.html">
+    <button class="px-3.5 py-2 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-2xs flex items-center space-x-2 transition-colors">
+      <i data-lucide="plus" class="w-4 h-4"></i>
+      <span>New Lead</span>
+    </button>
+  </a>
+</div>
+</header>
+
+
+
+<!-- End HEADER Area -->
+
+
+
+
+
+
+
+<!-- ========================================================================= -->
+<!-- START: MAIN DASHBOARD CONTAINER                                          -->
+<!-- ========================================================================= -->
+<main 
+  class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6 font-sans text-slate-800"
+  x-data="{ 
+    activeTab: 'sales',
+    activeSubFilter: 'all',
+    searchQuery: '',
+    selectedTier: 'all'
+  }">
+
+  <!-- CDN ASSET STORAGE REMINDER NOTE -->
+  <!-- Note: All static assets, PDFs, brand kits, and uploaded client logos are served via CDN storage -->
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 1. DASHBOARD HEADER HERO BAR                                          -->
+  <!-- --------------------------------------------------------------------- -->
+  <header class="w-full bg-white/70 backdrop-blur-xl border border-slate-200/80 shadow-xs rounded-2xl px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    
+    <!-- Left: Avatar & Role Greeting -->
+    <div class="flex items-center gap-3.5">
+      <div class="relative shrink-0">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-base shadow-md shadow-sky-500/20">
+          AD
+        </div>
+        <span class="absolute -bottom-0.5 -right-0.5 flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500 border-2 border-white"></span>
+        </span>
+      </div>
+
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-lg font-bold text-slate-800 tracking-tight">
+            Admin Command Center
+          </h1>
+          <span class="px-2 py-0.5 bg-indigo-50 text-indigo-700 text-[10px] font-bold rounded-md border border-indigo-200 uppercase tracking-wide">
+            Super Admin
+          </span>
+        </div>
+        <p class="text-xs text-slate-500">Cross-departmental management & dynamic CMS backend.</p>
+      </div>
+    </div>
+
+    <!-- Right: Reactive Date & Live Clock -->
+    <div 
+      x-data="{ 
+        dateStr: '', 
+        timeStr: '',
+        updateClock() {
+          const now = new Date();
+          this.dateStr = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+          this.timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+      }" 
+      x-init="updateClock(); setInterval(() => updateClock(), 1000)"
+      class="flex items-center gap-3 bg-slate-50 border border-slate-200/80 rounded-xl px-3.5 py-2 self-end sm:self-auto shrink-0"
+    >
+      <div class="flex items-center gap-1.5 border-r border-slate-200 pr-3 text-xs font-semibold text-slate-700">
+        <i data-lucide="calendar" class="w-3.5 h-3.5 text-sky-600"></i>
+        <span x-text="dateStr || 'Today'">Today</span>
+      </div>
+      <div class="flex items-center gap-1.5 text-xs font-bold text-slate-800 font-mono">
+        <i data-lucide="clock" class="w-3.5 h-3.5 text-indigo-600"></i>
+        <span x-text="timeStr || '00:00:00 AM'">00:00:00 AM</span>
+      </div>
+    </div>
+
+  </header>
+  <!-- END: DASHBOARD HEADER HERO BAR -->
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 2. EXECUTIVE QUICK-STATS GRID (4 KPI CARDS)                           -->
+  <!-- --------------------------------------------------------------------- -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+    
+    <!-- Stat Card 1 -->
+    <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-2xs flex flex-col justify-between">
+      <div class="flex items-center justify-between text-slate-500 mb-2">
+        <span class="text-xs font-medium">Active Pipeline</span>
+        <div class="p-1.5 rounded-lg bg-sky-50 text-sky-600">
+          <i data-lucide="line-chart" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div>
+        <div class="text-xl sm:text-2xl font-bold text-slate-900">42 Leads</div>
+        <div class="text-[11px] text-emerald-600 font-medium flex items-center gap-1 mt-0.5">
+          <i data-lucide="trending-up" class="w-3 h-3"></i> +12% this month
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat Card 2 -->
+    <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-2xs flex flex-col justify-between">
+      <div class="flex items-center justify-between text-slate-500 mb-2">
+        <span class="text-xs font-medium">Active Dev Builds</span>
+        <div class="p-1.5 rounded-lg bg-indigo-50 text-indigo-600">
+          <i data-lucide="code-2" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div>
+        <div class="text-xl sm:text-2xl font-bold text-slate-900">18 Projects</div>
+        <div class="text-[11px] text-indigo-600 font-medium flex items-center gap-1 mt-0.5">
+          <i data-lucide="check-circle-2" class="w-3 h-3"></i> 4 Ready for Review
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat Card 3 -->
+    <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-2xs flex flex-col justify-between">
+      <div class="flex items-center justify-between text-slate-500 mb-2">
+        <span class="text-xs font-medium">Creative Assets</span>
+        <div class="p-1.5 rounded-lg bg-purple-50 text-purple-600">
+          <i data-lucide="palette" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div>
+        <div class="text-xl sm:text-2xl font-bold text-slate-900">29 Queued</div>
+        <div class="text-[11px] text-slate-500 font-medium flex items-center gap-1 mt-0.5">
+          <i data-lucide="layers" class="w-3 h-3"></i> Logos & Brand Kits
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat Card 4 -->
+    <div class="bg-white p-4 rounded-xl border border-slate-200/80 shadow-2xs flex flex-col justify-between">
+      <div class="flex items-center justify-between text-slate-500 mb-2">
+        <span class="text-xs font-medium">Pending Approvals</span>
+        <div class="p-1.5 rounded-lg bg-amber-50 text-amber-600">
+          <i data-lucide="user-plus" class="w-4 h-4"></i>
+        </div>
+      </div>
+      <div>
+        <div class="text-xl sm:text-2xl font-bold text-slate-900">5 Hires</div>
+        <div class="text-[11px] text-amber-600 font-medium flex items-center gap-1 mt-0.5">
+          <i data-lucide="clock" class="w-3 h-3"></i> Resumes Waiting
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- END: EXECUTIVE QUICK-STATS GRID -->
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 3. TOP-LEVEL TABBED NAVIGATION (WooCommerce Pattern)                  -->
+  <!-- --------------------------------------------------------------------- -->
+  <div class="bg-white border border-slate-200/80 rounded-xl p-1.5 shadow-2xs overflow-x-auto">
+    <nav class="flex items-center space-x-1 min-w-max" aria-label="Admin Tabs">
+      
+      <!-- Tab 1: Overview -->
+      <button 
+        @click="activeTab = 'overview'" 
+        :class="activeTab === 'overview' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+        class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all">
+        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+        <span>Overview</span>
+      </button>
+
+      <!-- Tab 2: Sales & Leads (Active Default) -->
+      <button 
+        @click="activeTab = 'sales'" 
+        :class="activeTab === 'sales' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+        class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all">
+        <i data-lucide="briefcase" class="w-4 h-4"></i>
+        <span>Sales & Pipeline</span>
+        <span 
+          :class="activeTab === 'sales' ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'"
+          class="px-1.5 py-0.5 rounded text-[10px] font-bold">42</span>
+      </button>
+
+  <!-- Tab 3: Operations & Tech -->
+  <button 
+    @click="activeTab = 'tech'; $nextTick(() => lucide.createIcons())" 
+    :class="activeTab === 'tech' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+    class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all">
+    <i data-lucide="terminal" class="w-4 h-4"></i>
+    <span>Tech & Dev</span>
+  </button>
+
+  <!-- Tab 4: Creative & Design -->
+  <button 
+    @click="activeTab = 'creative'; $nextTick(() => lucide.createIcons())" 
+    :class="activeTab === 'creative' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+    class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all">
+    <i data-lucide="palette" class="w-4 h-4"></i>
+    <span>Creative Queue</span>
+  </button>
+
+      <!-- Tab 5: Team & HR -->
+      <button 
+        @click="activeTab = 'team'" 
+        :class="activeTab === 'team' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+        class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all">
+        <i data-lucide="users" class="w-4 h-4"></i>
+        <span>Team & Directory</span>
+      </button>
+
+      <!-- Tab 6: System & CMS Settings -->
+      <button 
+        @click="activeTab = 'settings'" 
+        :class="activeTab === 'settings' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'"
+        class="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        <span>System Settings</span>
+      </button>
+
+    </nav>
+  </div>
+  <!-- END: TOP-LEVEL TABBED NAVIGATION -->
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 4. DYNAMIC TAB CONTENT PANELS (DROP-ZONES)                            -->
+  <!-- --------------------------------------------------------------------- -->
+
+  <!-- ===================================================================== -->
+  <!-- TAB 1: EXECUTIVE OVERVIEW PANEL (Drop Zone)                            -->
+  <!-- ===================================================================== -->
+  <div x-show="activeTab === 'overview'" x-cloak class="space-y-6">
+    <!-- PLACEHOLDER: Drop Executive Directives Hub & Activity Terminal Here -->
+    <div class="p-8 border-2 border-dashed border-slate-200 rounded-xl text-center text-slate-400">
+      <i data-lucide="layout-dashboard" class="w-8 h-8 mx-auto mb-2 text-slate-300"></i>
+      <p class="text-sm font-medium">[ Overview Tab Snippet Drop Zone ]</p>
+    </div>
+  </div>
+  <!-- END TAB 1 -->
+
+  <!-- ===================================================================== -->
+  <!-- TAB 2: SALES & LEADS PANEL (Zebra-Striped Table Drop Zone)             -->
+  <!-- ===================================================================== -->
+<!-- ========================================================================= -->
+<!-- START: TAB 2 - SALES & PIPELINE CONTAINER                                 -->
+<!-- Replace the Tab 2 Placeholder Div with this entire snippet               -->
+<!-- ========================================================================= -->
+<div x-show="activeTab === 'sales'" class="space-y-4">
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- A. FILTER & CONTROL TOOLBAR                                             -->
+  <!-- Dynamic search, tier filter dropdown, and view layout toggles          -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="bg-white border border-slate-200/80 rounded-xl p-3 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-3">
+    
+    <!-- Left: Sub-Filter Pills -->
+    <div class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
+      <button 
+        @click="activeSubFilter = 'all'" 
+        :class="activeSubFilter === 'all' ? 'bg-indigo-50 text-indigo-700 font-semibold border-indigo-200' : 'bg-slate-50 text-slate-600 border-slate-200/80 hover:bg-slate-100'"
+        class="px-2.5 py-1 rounded-lg text-xs border transition-all whitespace-nowrap">
+        All Active (42)
+      </button>
+
+      <button 
+        @click="activeSubFilter = 'high-priority'" 
+        :class="activeSubFilter === 'high-priority' ? 'bg-rose-50 text-rose-700 font-semibold border-rose-200' : 'bg-slate-50 text-slate-600 border-slate-200/80 hover:bg-slate-100'"
+        class="px-2.5 py-1 rounded-lg text-xs border transition-all flex items-center gap-1 whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+        Overdue / Urgent (8)
+      </button>
+
+      <button 
+        @click="activeSubFilter = 'closing'" 
+        :class="activeSubFilter === 'closing' ? 'bg-amber-50 text-amber-700 font-semibold border-amber-200' : 'bg-slate-50 text-slate-600 border-slate-200/80 hover:bg-slate-100'"
+        class="px-2.5 py-1 rounded-lg text-xs border transition-all whitespace-nowrap">
+        Closing Soon (14)
+      </button>
+
+      <button 
+        @click="activeSubFilter = 'closed-retarget'" 
+        :class="activeSubFilter === 'closed-retarget' ? 'bg-emerald-50 text-emerald-700 font-semibold border-emerald-200' : 'bg-slate-50 text-slate-600 border-slate-200/80 hover:bg-slate-100'"
+        class="px-2.5 py-1 rounded-lg text-xs border transition-all whitespace-nowrap">
+        Closed / Upsell Check-ins
+      </button>
+    </div>
+
+    <!-- Right: Search Input & Budget Tier Selector -->
+    <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+      
+      <!-- Live Filter Search Input -->
+      <div class="relative w-full md:w-56">
+        <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+        <input 
+          type="text" 
+          x-model="searchQuery" 
+          placeholder="Search lead or client..." 
+          class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border border-slate-200/80 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+        />
+      </div>
+
+      <!-- Budget Tier Filter Dropdown -->
+      <select 
+        x-model="selectedTier"
+        class="bg-slate-50 border border-slate-200/80 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500">
+        <option value="all">All Budget Tiers</option>
+        <option value="solo">Solo ($)</option>
+        <option value="startup">Startup ($$)</option>
+        <option value="small-business">Small Business ($$$)</option>
+        <option value="enterprise">Enterprise ($$$$)</option>
+      </select>
+
+    </div>
+
+  </div>
+  <!-- END: FILTER & CONTROL TOOLBAR -->
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- B. DENSE ZEBRA-STRIPED PIPELINE TABLE                                    -->
+  <!-- High-density listing for 10-20+ leads without heavy vertical scrolling   -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="bg-white rounded-xl border border-slate-200/80 shadow-2xs overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        
+        <!-- Table Header -->
+        <thead>
+          <tr class="bg-slate-100/80 text-slate-600 uppercase text-[10px] font-bold tracking-wider border-b border-slate-200">
+            <th class="py-3 px-4 w-10">Type</th>
+            <th class="py-3 px-4">Lead / Project Name</th>
+            <th class="py-3 px-4">Budget Tier</th>
+            <th class="py-3 px-4">Budget Range</th>
+            <th class="py-3 px-4">Target Due Date</th>
+            <th class="py-3 px-4">Assigned Sales Rep</th>
+            <th class="py-3 px-4 text-right">Actions</th>
+          </tr>
+        </thead>
+
+        <!-- Zebra-Striped Body -->
+        <tbody class="divide-y divide-slate-100 text-xs text-slate-700 font-sans">
+          
+          <!-- ROW 1 (Even Row - White) -->
+          <tr class="hover:bg-indigo-50/40 transition-colors bg-white">
+            <!-- Icon Indicator -->
+            <td class="py-3 px-4">
+              <div class="w-7 h-7 rounded-lg bg-indigo-100/70 text-indigo-600 flex items-center justify-center">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+              </div>
+            </td>
+            <!-- Lead Name & Client -->
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-900">Apex Portal Redesign</div>
+              <div class="text-[11px] text-slate-500">Client: Acme Corp</div>
+            </td>
+            <!-- Budget Tier Badge -->
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200/80">
+                Enterprise ($$$$)
+              </span>
+            </td>
+            <!-- Budget Range -->
+            <td class="py-3 px-4 font-mono text-slate-600 font-medium">$15k - $25k</td>
+            <!-- Target Due Date (Overdue Alert Badge) -->
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 font-semibold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-200 text-[11px]">
+                <i data-lucide="alert-circle" class="w-3 h-3"></i> Oct 12 (Overdue)
+              </span>
+            </td>
+            <!-- Sales Rep -->
+            <td class="py-3 px-4">
+              <div class="flex items-center gap-1.5">
+                <div class="w-5 h-5 rounded-full bg-slate-200 text-[10px] font-bold flex items-center justify-center text-slate-700">SJ</div>
+                <span class="text-slate-800 font-medium">Sarah Jenkins</span>
+              </div>
+            </td>
+            <!-- Navigation Actions (View Lead / View Client) -->
+            <td class="py-3 px-4 text-right">
+              <div class="inline-flex items-center gap-1">
+                <a href="single-lead.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-semibold transition-colors text-[11px]" title="View Lead Profile">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Lead</span>
+                </a>
+                <a href="single-client.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold transition-colors text-[11px]" title="View Client Record">
+                  <i data-lucide="user" class="w-3 h-3"></i>
+                  <span>Client</span>
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- ROW 2 (Odd Row - Light Slate Striping) -->
+          <tr class="hover:bg-indigo-50/40 transition-colors bg-slate-50/60">
+            <td class="py-3 px-4">
+              <div class="w-7 h-7 rounded-lg bg-emerald-100/70 text-emerald-600 flex items-center justify-center">
+                <i data-lucide="palette" class="w-3.5 h-3.5"></i>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-900">Vector Logo & Brand Kit</div>
+              <div class="text-[11px] text-slate-500">Client: Cyberdyne Systems</div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                Startup ($$)
+              </span>
+            </td>
+            <td class="py-3 px-4 font-mono text-slate-600 font-medium">$1.5k - $3k</td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[11px]">
+                <i data-lucide="clock" class="w-3 h-3"></i> Nov 02 (3 Days)
+              </span>
+            </td>
+            <td class="py-3 px-4">
+              <div class="flex items-center gap-1.5">
+                <div class="w-5 h-5 rounded-full bg-slate-200 text-[10px] font-bold flex items-center justify-center text-slate-700">MK</div>
+                <span class="text-slate-800 font-medium">Mike Kowalski</span>
+              </div>
+            </td>
+            <td class="py-3 px-4 text-right">
+              <div class="inline-flex items-center gap-1">
+                <a href="single-lead.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-semibold transition-colors text-[11px]" title="View Lead Profile">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Lead</span>
+                </a>
+                <a href="single-client.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold transition-colors text-[11px]" title="View Client Record">
+                  <i data-lucide="user" class="w-3 h-3"></i>
+                  <span>Client</span>
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- ROW 3 (Even Row - White) -->
+          <tr class="hover:bg-indigo-50/40 transition-colors bg-white">
+            <td class="py-3 px-4">
+              <div class="w-7 h-7 rounded-lg bg-sky-100/70 text-sky-600 flex items-center justify-center">
+                <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-900">Mobile Ordering App</div>
+              <div class="text-[11px] text-slate-500">Client: Bistro Del Mar</div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-sky-50 text-sky-700 border border-sky-200/80">
+                Small Business ($$$)
+              </span>
+            </td>
+            <td class="py-3 px-4 font-mono text-slate-600 font-medium">$8k - $12k</td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 text-[11px]">
+                <i data-lucide="calendar" class="w-3 h-3"></i> Nov 18
+              </span>
+            </td>
+            <td class="py-3 px-4">
+              <div class="flex items-center gap-1.5">
+                <div class="w-5 h-5 rounded-full bg-slate-200 text-[10px] font-bold flex items-center justify-center text-slate-700">SJ</div>
+                <span class="text-slate-800 font-medium">Sarah Jenkins</span>
+              </div>
+            </td>
+            <td class="py-3 px-4 text-right">
+              <div class="inline-flex items-center gap-1">
+                <a href="single-lead.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-semibold transition-colors text-[11px]" title="View Lead Profile">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Lead</span>
+                </a>
+                <a href="single-client.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold transition-colors text-[11px]" title="View Client Record">
+                  <i data-lucide="user" class="w-3 h-3"></i>
+                  <span>Client</span>
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- ROW 4 (Odd Row - Light Slate Striping) -->
+          <tr class="hover:bg-indigo-50/40 transition-colors bg-slate-50/60">
+            <td class="py-3 px-4">
+              <div class="w-7 h-7 rounded-lg bg-amber-100/70 text-amber-600 flex items-center justify-center">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-slate-900">E-Commerce Headless Migration</div>
+              <div class="text-[11px] text-slate-500">Client: Artisan Apparel</div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                Solo ($)
+              </span>
+            </td>
+            <td class="py-3 px-4 font-mono text-slate-600 font-medium">$500 - $1.2k</td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 text-[11px]">
+                <i data-lucide="calendar" class="w-3 h-3"></i> Dec 01
+              </span>
+            </td>
+            <td class="py-3 px-4">
+              <div class="flex items-center gap-1.5">
+                <div class="w-5 h-5 rounded-full bg-slate-200 text-[10px] font-bold flex items-center justify-center text-slate-700">AD</div>
+                <span class="text-slate-800 font-medium">Alex Drake</span>
+              </div>
+            </td>
+            <td class="py-3 px-4 text-right">
+              <div class="inline-flex items-center gap-1">
+                <a href="single-lead.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-semibold transition-colors text-[11px]" title="View Lead Profile">
+                  <i data-lucide="eye" class="w-3 h-3"></i>
+                  <span>Lead</span>
+                </a>
+                <a href="single-client.html" class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold transition-colors text-[11px]" title="View Client Record">
+                  <i data-lucide="user" class="w-3 h-3"></i>
+                  <span>Client</span>
+                </a>
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table Footer / Pagination Controls -->
+    <div class="bg-slate-50 px-4 py-2.5 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
+      <div>Showing <span class="font-bold text-slate-700">1-4</span> of <span class="font-bold text-slate-700">42</span> sales leads</div>
+      <div class="flex items-center gap-1">
+        <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50" disabled>Previous</button>
+        <button class="px-2.5 py-1 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50">Next</button>
+      </div>
+    </div>
+
+  </div>
+  <!-- END: DENSE ZEBRA-STRIPED PIPELINE TABLE -->
+
+</div>
+<!-- ========================================================================= -->
+<!-- END: TAB 2 - SALES & PIPELINE CONTAINER                                   -->
+<!-- ========================================================================= -->
+
+
+<!-- ========================================================================= -->
+<!-- START: TAB 3 - TECH & DEV SUPERVISORY OVERVIEW CONTAINER                  -->
+<!-- Replace the Tab 3 Placeholder Div with this entire snippet               -->
+<!-- ========================================================================= -->
+<div x-show="activeTab === 'tech'" class="space-y-6 text-left">
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- A. SUPERVISORY HEADER BAR & ACTIVE COUNT                                -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 text-sky-600 flex items-center justify-center shrink-0">
+        <i data-lucide="cpu" class="w-5 h-5"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h3 class="font-bold text-sm text-slate-900">Tech & Build Oversight</h3>
+          <span class="text-[10px] bg-sky-50 text-sky-700 font-bold px-2 py-0.5 rounded border border-sky-200">3 Active Projects</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">Oversee developer assignments, review client requirements, and clear project roadblocks.</p>
+      </div>
+    </div>
+
+    <!-- Quick Supervisory Actions -->
+    <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
+      <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition-colors shadow-xs">
+        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+        <span>Quick Message to Dev</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- B. ACTIVE TECH PROJECTS ZEBRA LIST                                      -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+    <div class="px-5 py-3.5 bg-slate-50/80 border-b border-slate-200/80 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="layers" class="w-4 h-4 text-sky-600"></i>
+        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Active Client Builds & Dev Assignments</h3>
+      </div>
+      <span class="text-[11px] text-slate-500 font-medium">Click client name to open profile</span>
+    </div>
+
+    <div class="divide-y divide-slate-100 text-xs">
+      
+      <!-- Project 1 (Zebra Light) -->
+      <div class="p-4 bg-white hover:bg-sky-50/30 transition-colors space-y-3">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          
+          <!-- Client & Lead Info -->
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-600 font-bold flex items-center justify-center shrink-0">
+              AL
+            </div>
+            <div>
+              <a href="#" class="font-bold text-sm text-slate-900 hover:text-sky-600 flex items-center gap-1.5">
+                Apex Logistics ERP Portal
+                <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
+              </a>
+              <div class="flex flex-wrap items-center gap-2 mt-1">
+                <span class="text-slate-500">Assigned Dev: <strong class="text-slate-800">Alex Drake</strong></span>
+                <span class="text-slate-300">•</span>
+                <!-- Client Trait Badges -->
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Gentle Client</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">Enterprise</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-50 text-sky-700 border border-sky-200">$12,000 - $18,000 ($15,000)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status & Actions -->
+          <div class="flex items-center gap-2 shrink-0 self-end md:self-auto">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+              In Development
+            </span>
+          </div>
+        </div>
+
+        <!-- Tech Stack Horizontal Pill Row -->
+        <div class="flex items-center gap-2 pt-1">
+          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider shrink-0">Tech Stack:</span>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-200 text-[10px] font-medium">React</span>
+            <span class="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px] font-medium">Node.js</span>
+            <span class="px-2 py-0.5 rounded-md bg-violet-50 text-violet-700 border border-violet-200 text-[10px] font-medium">PostgreSQL</span>
+            <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-medium">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 (Zebra Dark) -->
+      <div class="p-4 bg-slate-50/50 hover:bg-sky-50/30 transition-colors space-y-3">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          
+          <!-- Client & Lead Info -->
+          <div class="flex items-start gap-3">
+            <div class="w-9 h-9 rounded-xl bg-violet-50 border border-violet-200 text-violet-600 font-bold flex items-center justify-center shrink-0">
+              NV
+            </div>
+            <div>
+              <a href="#" class="font-bold text-sm text-slate-900 hover:text-sky-600 flex items-center gap-1.5">
+                Nova Health Booking System
+                <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-400"></i>
+              </a>
+              <div class="flex flex-wrap items-center gap-2 mt-1">
+                <span class="text-slate-500">Assigned Dev: <strong class="text-slate-800">Mike Kowalski</strong></span>
+                <span class="text-slate-300">•</span>
+                <!-- Client Trait Badges -->
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200">Strict Client</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">Small Business</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-sky-50 text-sky-700 border border-sky-200">$5,000 - $8,000 ($6,500)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Status & Actions -->
+          <div class="flex items-center gap-2 shrink-0 self-end md:self-auto">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+              Blocked (Waiting Asset)
+            </span>
+          </div>
+        </div>
+
+        <!-- Tech Stack Horizontal Pill Row -->
+        <div class="flex items-center gap-2 pt-1">
+          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider shrink-0">Tech Stack:</span>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200 text-[10px] font-medium">Alpine.js</span>
+            <span class="px-2 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-200 text-[10px] font-medium">Laravel API</span>
+            <span class="px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-200 text-[10px] font-medium">Stripe API</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- C. TWO-COLUMN SUPERVISORY WORKSPACE                                     -->
+  <!-- Left Column: Dev Messages & Admin Dispatch Box (60%)                     -->
+  <!-- Right Column: Dual Handoff Quality Checklist & Blockers (40%)            -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- ===================================================================== -->
+    <!-- LEFT COLUMN: MANAGER <-> DEV COMMUNICATION CENTER (7 COLS / 60%)     -->
+    <!-- ===================================================================== -->
+    <div class="lg:col-span-7 space-y-6">
+
+      <!-- Dev Messages Feed & Admin Quick Dispatch -->
+      <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-sm p-4 space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200/80">
+          <div class="flex items-center gap-2">
+            <i data-lucide="message-square" class="w-4 h-4 text-sky-600"></i>
+            <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Dev Team Communications & Dispatch</h3>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">Direct Admin Channel</span>
+        </div>
+
+        <!-- Incoming Developer Notes Feed -->
+        <div class="space-y-3 max-h-56 overflow-y-auto pr-1">
+          <div class="p-3 bg-slate-50 border border-slate-200/60 rounded-xl text-xs space-y-1">
+            <div class="flex items-center justify-between font-bold text-slate-900">
+              <span class="text-sky-700">Alex Drake (Apex Logistics)</span>
+              <span class="text-[10px] text-slate-400 font-normal">Today at 10:15 AM</span>
+            </div>
+            <p class="text-slate-600">Initial database migrations completed. Waiting on client confirmation for custom invoice field formats.</p>
+          </div>
+
+          <div class="p-3 bg-rose-50/50 border border-rose-200/60 rounded-xl text-xs space-y-1">
+            <div class="flex items-center justify-between font-bold text-slate-900">
+              <span class="text-rose-700">Mike Kowalski (Nova Health)</span>
+              <span class="text-[10px] text-slate-400 font-normal">Yesterday at 4:30 PM</span>
+            </div>
+            <p class="text-slate-600">Cannot hook up live appointments. Client hasn't provided their custom Google Calendar API credentials yet.</p>
+          </div>
+        </div>
+
+        <!-- Quick Dispatch Box for Admin -->
+        <div class="pt-2 border-t border-slate-200/80 space-y-3">
+          <label class="block text-xs font-bold text-slate-700">Send Direct Instruction / Priority Directive:</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <select class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-sky-500">
+              <option>Select Developer / Project...</option>
+              <option>Alex Drake — Apex Logistics</option>
+              <option>Mike Kowalski — Nova Health</option>
+            </select>
+            <div class="flex gap-2">
+              <input type="text" placeholder="Type quick direction for dev..." class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-sky-500">
+              <button class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shrink-0 transition-colors">Send</button>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-1">
+            <span class="text-[10px] text-slate-400 font-medium">Quick Presets:</span>
+            <button class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-semibold transition-colors">[ Pause Build ]</button>
+            <button class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-semibold transition-colors">[ Request Video Clip ]</button>
+            <button class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-semibold transition-colors">[ Flag High Priority ]</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Blockers & Roadblock Clearing -->
+      <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-sm p-4 space-y-3">
+        <div class="flex items-center gap-2 pb-2 border-b border-slate-200/80">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600"></i>
+          <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Active Dev Blockers (Action Needed by Boss)</h3>
+        </div>
+
+        <div class="p-3 bg-amber-50/60 border border-amber-200/80 rounded-xl text-xs space-y-2">
+          <div class="flex items-center justify-between font-bold text-slate-900">
+            <span class="text-amber-900">Nova Health Booking — Missing Passwords</span>
+            <span class="px-2 py-0.5 rounded bg-amber-200/60 text-amber-800 text-[10px]">Needs Admin Outreach</span>
+          </div>
+          <p class="text-slate-600">Mike is blocked because client hasn't sent booking API keys. Contact client or sales rep to collect details.</p>
+          <div class="flex items-center gap-2 pt-1">
+            <button class="px-3 py-1 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-[11px] font-bold transition-colors">Call Client Now</button>
+            <button class="px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 text-[11px] font-medium hover:bg-slate-50 transition-colors">Ping Sales Rep</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- RIGHT COLUMN: DUAL HANDOFF CHECKLIST & APPROVAL (5 COLS / 40%)        -->
+    <!-- ===================================================================== -->
+    <div class="lg:col-span-5 space-y-6" x-data="{ handoffTab: 'qa' }">
+
+      <div class="bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-sm p-4 space-y-4">
+        
+        <div class="border-b border-slate-200/80 pb-3 space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-lucide="check-square" class="w-4 h-4 text-emerald-600"></i>
+              <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Client Handoff & Quality Check</h3>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Apex Logistics</span>
+          </div>
+
+          <!-- Dual Checklist Tabs -->
+          <div class="flex rounded-xl bg-slate-100 p-1 text-xs">
+            <button @click="handoffTab = 'qa'" :class="handoffTab === 'qa' ? 'bg-white font-bold text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'" class="flex-1 py-1 rounded-lg transition-all text-center">
+              1. Agency Standards
+            </button>
+            <button @click="handoffTab = 'needs'" :class="handoffTab === 'needs' ? 'bg-white font-bold text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'" class="flex-1 py-1 rounded-lg transition-all text-center">
+              2. Client Stated Needs
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 1: Agency Baseline QA -->
+        <div x-show="handoffTab === 'qa'" class="space-y-2.5 text-xs">
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/60 cursor-pointer transition-colors">
+            <input type="checkbox" checked class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+            <span class="text-slate-700 font-medium">Site loads properly on mobile devices</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/60 cursor-pointer transition-colors">
+            <input type="checkbox" checked class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+            <span class="text-slate-700 font-medium">All contact & inquiry forms working</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/60 cursor-pointer transition-colors">
+            <input type="checkbox" checked class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+            <span class="text-slate-700 font-medium">Design & colors match approved branding</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/60 cursor-pointer transition-colors">
+            <input type="checkbox" class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+            <span class="text-slate-700 font-medium text-amber-700 font-bold">Client final payment cleared in billing</span>
+          </label>
+        </div>
+
+        <!-- TAB 2: Client Stated Needs (Copied from Sales/Onboarding) -->
+        <div x-show="handoffTab === 'needs'" class="space-y-2.5 text-xs">
+          <div class="text-[11px] text-slate-500 italic pb-1">Logged by Sales Rep in Consultation Stage</div>
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/60 cursor-pointer transition-colors">
+            <input type="checkbox" checked class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+            <span class="text-slate-700 font-medium">Custom CSV export button for daily reports</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/60 cursor-pointer transition-colors">
+            <input type="checkbox" checked class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+            <span class="text-slate-700 font-medium">Dark Mode toggle on admin dashboard</span>
+          </label>
+          <label class="flex items-center gap-2.5 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/60 cursor-pointer transition-colors">
+            <input type="checkbox" class="rounded border-slate-300 text-sky-600 focus:ring-sky-500">
+            <span class="text-slate-700 font-medium">Direct integration with QuickBooks API</span>
+          </label>
+        </div>
+
+        <!-- Final Boss Approval Controls -->
+        <div class="pt-3 border-t border-slate-200/80 space-y-2">
+          <button class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-colors shadow-xs flex items-center justify-center gap-1.5">
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            <span>Sign Off & Deliver to Client</span>
+          </button>
+          <button class="w-full py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors">
+            Return to Dev with Revision Notes
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ========================================================================= -->
+<!-- END: TAB 3 - TECH & DEV SUPERVISORY OVERVIEW CONTAINER                    -->
+<!-- ========================================================================= -->
+
+
+<!-- ========================================================================= -->
+<!-- START: TAB 4 - CREATIVE & DESIGN QUEUE CONTAINER                          -->
+<!-- Replace the Tab 4 Placeholder Div with this entire snippet               -->
+<!-- ========================================================================= -->
+<div x-show="activeTab === 'creative'" class="space-y-6">
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- A. CREATIVE METRICS & ASSET STATUS BANNER                                -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white rounded-xl p-4 shadow-sm border border-purple-800/50 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+    <div class="flex items-center gap-3.5">
+      <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-300 font-bold shrink-0">
+        <i data-lucide="paintbrush" class="w-5 h-5"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h3 class="font-bold text-sm text-purple-100">Design Studio & Asset Queue</h3>
+          <span class="text-[10px] bg-purple-500/30 text-purple-200 border border-purple-400/30 font-bold px-2 py-0.5 rounded-full">29 Active Tasks</span>
+        </div>
+        <p class="text-xs text-purple-200/80 mt-0.5">Quick logo revisions, business cards, UI kit tokens, and brand kit exports.</p>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-2 self-end md:self-auto shrink-0">
+      <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold transition-colors shadow-xs">
+        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+        <span>New Design Task</span>
+      </button>
+      <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-purple-100 border border-purple-400/20 text-xs font-medium transition-colors">
+        <i data-lucide="palette" class="w-3.5 h-3.5"></i>
+        <span>Open Design File Library</span>
+      </button>
+    </div>
+  </div>
+  <!-- END: CREATIVE METRICS BANNER -->
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- B. TWO-COLUMN CREATIVE WORKSPACE                                        -->
+  <!-- Left Column: Active Design Task Queue Table (65%)                       -->
+  <!-- Right Column: Proof Approvals & Brand Token Vault (35%)                 -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- ===================================================================== -->
+    <!-- LEFT COLUMN: HIGH-DENSITY CREATIVE TASK TABLE (8 COLS / ~65%)         -->
+    <!-- ===================================================================== -->
+    <div class="lg:col-span-8 space-y-4">
+
+      <div class="bg-white rounded-xl border border-slate-200/80 shadow-2xs overflow-hidden">
+        
+        <!-- Table Header & Sub-filters -->
+        <div class="px-4 py-3 bg-slate-50/80 border-b border-slate-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <i data-lucide="layers" class="w-4 h-4 text-purple-600"></i>
+            <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Active Design Deliverables</h3>
+          </div>
+
+          <!-- Quick Filters -->
+          <div class="flex items-center gap-1 text-[11px]">
+            <button class="px-2 py-0.5 rounded bg-purple-50 text-purple-700 font-bold border border-purple-200">All (29)</button>
+            <button class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 hover:bg-slate-200">Logos (12)</button>
+            <button class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 hover:bg-slate-200">UI Kits (8)</button>
+            <button class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 hover:bg-slate-200">Print (9)</button>
+          </div>
+        </div>
+
+        <!-- High-Density Zebra-Striped Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-100/60 text-slate-600 uppercase text-[10px] font-bold tracking-wider border-b border-slate-200">
+                <th class="py-2.5 px-3.5 w-8">Category</th>
+                <th class="py-2.5 px-3.5">Deliverable Name</th>
+                <th class="py-2.5 px-3.5">Client</th>
+                <th class="py-2.5 px-3.5">Target Due</th>
+                <th class="py-2.5 px-3.5">Assigned Designer</th>
+                <th class="py-2.5 px-3.5 text-right">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-slate-100 text-xs text-slate-700 font-sans">
+              
+              <!-- Item 1: Vector Logo -->
+              <tr class="hover:bg-purple-50/30 transition-colors bg-white">
+                <td class="py-2.5 px-3.5">
+                  <span class="w-6 h-6 rounded bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-[10px]">
+                    <i data-lucide="image" class="w-3 h-3"></i>
+                  </span>
+                </td>
+                <td class="py-2.5 px-3.5">
+                  <div class="font-bold text-slate-900">Vector Logo & Brand Iconography</div>
+                  <div class="text-[10px] text-slate-400">Format: SVG, PNG, AI Vector</div>
+                </td>
+                <td class="py-2.5 px-3.5 font-medium text-slate-600">Cyberdyne Systems</td>
+                <td class="py-2.5 px-3.5">
+                  <span class="inline-flex items-center gap-1 font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 text-[10px]">
+                    <i data-lucide="clock" class="w-3 h-3"></i> Today 5 PM
+                  </span>
+                </td>
+                <td class="py-2.5 px-3.5">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-purple-200 text-purple-800 text-[10px] font-bold flex items-center justify-center">MK</div>
+                    <span class="font-medium text-slate-800">Mike K.</span>
+                  </div>
+                </td>
+                <td class="py-2.5 px-3.5 text-right">
+                  <div class="inline-flex items-center gap-1">
+                    <a href="single-lead.html" class="px-2 py-1 bg-purple-50 text-purple-700 hover:bg-purple-100 font-semibold rounded text-[10px] flex items-center gap-1" title="View Lead">
+                      <i data-lucide="eye" class="w-3 h-3"></i> Lead
+                    </a>
+                    <a href="single-client.html" class="px-2 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold rounded text-[10px] flex items-center gap-1" title="View Client">
+                      <i data-lucide="user" class="w-3 h-3"></i> Client
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Item 2: Business Cards (Odd Row Striping) -->
+              <tr class="hover:bg-purple-50/30 transition-colors bg-slate-50/60">
+                <td class="py-2.5 px-3.5">
+                  <span class="w-6 h-6 rounded bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-[10px]">
+                    <i data-lucide="credit-card" class="w-3 h-3"></i>
+                  </span>
+                </td>
+                <td class="py-2.5 px-3.5">
+                  <div class="font-bold text-slate-900">Print-Ready Business Cards</div>
+                  <div class="text-[10px] text-slate-400">350gsm Foil Stamp Specs</div>
+                </td>
+                <td class="py-2.5 px-3.5 font-medium text-slate-600">Acme Corp</td>
+                <td class="py-2.5 px-3.5">
+                  <span class="inline-flex items-center gap-1 font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200 text-[10px]">
+                    <i data-lucide="calendar" class="w-3 h-3"></i> Nov 05
+                  </span>
+                </td>
+                <td class="py-2.5 px-3.5">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-indigo-200 text-indigo-800 text-[10px] font-bold flex items-center justify-center">SJ</div>
+                    <span class="font-medium text-slate-800">Sarah J.</span>
+                  </div>
+                </td>
+                <td class="py-2.5 px-3.5 text-right">
+                  <div class="inline-flex items-center gap-1">
+                    <a href="single-lead.html" class="px-2 py-1 bg-purple-50 text-purple-700 hover:bg-purple-100 font-semibold rounded text-[10px] flex items-center gap-1">
+                      <i data-lucide="eye" class="w-3 h-3"></i> Lead
+                    </a>
+                    <a href="single-client.html" class="px-2 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold rounded text-[10px] flex items-center gap-1">
+                      <i data-lucide="user" class="w-3 h-3"></i> Client
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Item 3: UI Design System Tokens -->
+              <tr class="hover:bg-purple-50/30 transition-colors bg-white">
+                <td class="py-2.5 px-3.5">
+                  <span class="w-6 h-6 rounded bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-[10px]">
+                    <i data-lucide="component" class="w-3 h-3"></i>
+                  </span>
+                </td>
+                <td class="py-2.5 px-3.5">
+                  <div class="font-bold text-slate-900">Mobile Web App UI Kit & Palette</div>
+                  <div class="text-[10px] text-slate-400">Tailwind Config + Figma Sync</div>
+                </td>
+                <td class="py-2.5 px-3.5 font-medium text-slate-600">Bistro Del Mar</td>
+                <td class="py-2.5 px-3.5">
+                  <span class="inline-flex items-center gap-1 font-semibold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-200 text-[10px]">
+                    <i data-lucide="alert-circle" class="w-3 h-3"></i> Oct 28 (Overdue)
+                  </span>
+                </td>
+                <td class="py-2.5 px-3.5">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-full bg-sky-200 text-sky-800 text-[10px] font-bold flex items-center justify-center">AD</div>
+                    <span class="font-medium text-slate-800">Alex D.</span>
+                  </div>
+                </td>
+                <td class="py-2.5 px-3.5 text-right">
+                  <div class="inline-flex items-center gap-1">
+                    <a href="single-lead.html" class="px-2 py-1 bg-purple-50 text-purple-700 hover:bg-purple-100 font-semibold rounded text-[10px] flex items-center gap-1">
+                      <i data-lucide="eye" class="w-3 h-3"></i> Lead
+                    </a>
+                    <a href="single-client.html" class="px-2 py-1 bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold rounded text-[10px] flex items-center gap-1">
+                      <i data-lucide="user" class="w-3 h-3"></i> Client
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- RIGHT COLUMN: CLIENT PROOFS & CDN ASSETS VAULT (4 COLS / ~35%)        -->
+    <!-- ===================================================================== -->
+    <div class="lg:col-span-4 space-y-6">
+
+      <!-- CLIENT PROOF APPROVAL QUEUE -->
+      <div class="bg-white rounded-xl border border-slate-200/80 shadow-2xs p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+            Client Proof Reviews
+          </h3>
+          <span class="text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 px-1.5 py-0.5 rounded">3 Awaiting Client</span>
+        </div>
+
+        <div class="space-y-2.5 text-xs">
+          <!-- Proof Item 1 -->
+          <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-2">
+            <div>
+              <div class="font-bold text-slate-800">Acme_Logo_v3_Draft.pdf</div>
+              <div class="text-[10px] text-slate-400">Sent 2 hours ago to Client</div>
+            </div>
+            <button class="px-2 py-1 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded text-[11px] font-semibold shrink-0">
+              Preview
+            </button>
+          </div>
+
+          <!-- Proof Item 2 -->
+          <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-2">
+            <div>
+              <div class="font-bold text-slate-800">Cyberdyne_Brand_Guidelines.pdf</div>
+              <div class="text-[10px] text-emerald-600 font-medium">✓ Client Approved</div>
+            </div>
+            <span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-200 shrink-0">
+              Approved
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CDN BRAND ASSETS QUICK EXPORT -->
+      <div class="bg-white rounded-xl border border-slate-200/80 shadow-2xs p-4 space-y-3">
+        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+          <i data-lucide="cloud-lightning" class="w-4 h-4 text-purple-600"></i>
+          CDN Asset Delivery Links
+        </h3>
+
+        <div class="space-y-2 text-xs">
+          <div class="p-2 bg-slate-900 rounded-lg text-slate-300 font-mono text-[11px] flex items-center justify-between">
+            <span class="truncate">cdn.agency.com/assets/acme/logo.svg</span>
+            <button class="text-xs text-purple-400 hover:text-purple-300 font-sans font-semibold shrink-0 ml-2">Copy</button>
+          </div>
+          <div class="p-2 bg-slate-900 rounded-lg text-slate-300 font-mono text-[11px] flex items-center justify-between">
+            <span class="truncate">cdn.agency.com/assets/cyber/fonts.zip</span>
+            <button class="text-xs text-purple-400 hover:text-purple-300 font-sans font-semibold shrink-0 ml-2">Copy</button>
+          </div>
+        </div>
+        <p class="text-[10px] text-slate-400">All deliverables automatically optimize and push to CDN storage upon marking as complete.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ========================================================================= -->
+<!-- END: TAB 4 - CREATIVE & DESIGN QUEUE CONTAINER                           -->
+<!-- ========================================================================= -->
+
+
+<!-- ========================================================================= -->
+<!-- START: TAB 5 - TEAM & APPLICANTS CONTAINER                                -->
+<!-- Replace the Tab 5 Placeholder Div with this entire snippet               -->
+<!-- ========================================================================= -->
+<div x-show="activeTab === 'team'" class="space-y-6">
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- A. TEAM WORKLOAD & RECRUITING SUMMARY BAR                               -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="bg-white border border-slate-200/80 rounded-xl p-4 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-600 flex items-center justify-center shrink-0">
+        <i data-lucide="users" class="w-5 h-5"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h3 class="font-bold text-sm text-slate-900">Agency Team & Talent Directory</h3>
+          <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded border border-emerald-200">8 Active Members</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">Manage team workloads, assign roles, and review incoming job applications.</p>
+      </div>
+    </div>
+
+    <!-- Quick Action -->
+    <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
+      <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors shadow-xs">
+        <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+        <span>Invite Team Member</span>
+      </button>
+    </div>
+  </div>
+  <!-- END: WORKLOAD SUMMARY BAR -->
+
+  <!-- ----------------------------------------------------------------------- -->
+  <!-- B. TWO-COLUMN WORKSPACE                                                  -->
+  <!-- Left Column: Active Team Members Directory (60%)                        -->
+  <!-- Right Column: Inbound Job Applications Queue (40%)                       -->
+  <!-- ----------------------------------------------------------------------- -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- ===================================================================== -->
+    <!-- LEFT COLUMN: ACTIVE TEAM DIRECTORY (7 COLS / ~60%)                    -->
+    <!-- ===================================================================== -->
+    <div class="lg:col-span-7 space-y-4">
+
+      <div class="bg-white rounded-xl border border-slate-200/80 shadow-2xs overflow-hidden">
+        
+        <div class="px-4 py-3 bg-slate-50/80 border-b border-slate-200/80 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="user-check" class="w-4 h-4 text-indigo-600"></i>
+            <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Internal Staff Directory</h3>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500">Average Capacity: <strong class="text-slate-800">78%</strong></span>
+        </div>
+
+        <div class="divide-y divide-slate-100 text-xs">
+          
+          <!-- Staff Member 1 -->
+          <div class="p-3.5 hover:bg-slate-50/60 transition-colors flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center shrink-0">
+                SJ
+              </div>
+              <div>
+                <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                  Sarah Jenkins
+                  <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded font-normal">Lead Account Rep</span>
+                </div>
+                <div class="text-[11px] text-slate-500">sarah@agency.com • 14 Active Accounts</div>
+              </div>
+            </div>
+
+            <div class="text-right shrink-0">
+              <span class="inline-block px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded text-[10px] font-semibold">
+                Available
+              </span>
+            </div>
+          </div>
+
+          <!-- Staff Member 2 -->
+          <div class="p-3.5 hover:bg-slate-50/60 transition-colors flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 font-bold flex items-center justify-center shrink-0">
+                MK
+              </div>
+              <div>
+                <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                  Mike Kowalski
+                  <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded font-normal">Senior Designer</span>
+                </div>
+                <div class="text-[11px] text-slate-500">mike@agency.com • 8 Design Queues</div>
+              </div>
+            </div>
+
+            <div class="text-right shrink-0">
+              <span class="inline-block px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-[10px] font-semibold">
+                Near Capacity (90%)
+              </span>
+            </div>
+          </div>
+
+          <!-- Staff Member 3 -->
+          <div class="p-3.5 hover:bg-slate-50/60 transition-colors flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-sky-100 text-sky-700 font-bold flex items-center justify-center shrink-0">
+                AD
+              </div>
+              <div>
+                <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                  Alex Drake
+                  <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded font-normal">Full-Stack Dev</span>
+                </div>
+                <div class="text-[11px] text-slate-500">alex@agency.com • 5 Active Sprints</div>
+              </div>
+            </div>
+
+            <div class="text-right shrink-0">
+              <span class="inline-block px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded text-[10px] font-semibold">
+                Available
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- RIGHT COLUMN: JOB APPLICANTS & RECRUITING QUEUE (5 COLS / ~40%)       -->
+    <!-- ===================================================================== -->
+    <div class="lg:col-span-5 space-y-4">
+
+      <div class="bg-white rounded-xl border border-slate-200/80 shadow-2xs overflow-hidden">
+        
+        <div class="px-4 py-3 bg-slate-50/80 border-b border-slate-200/80 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="file-text" class="w-4 h-4 text-purple-600"></i>
+            <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Inbound Job Applicants</h3>
+          </div>
+          <span class="text-[10px] font-bold bg-purple-50 text-purple-700 px-2 py-0.5 rounded border border-purple-200">5 New</span>
+        </div>
+
+        <div class="divide-y divide-slate-100 text-xs">
+          
+          <!-- Applicant 1 -->
+          <div class="p-3.5 hover:bg-slate-50/60 transition-colors space-y-2">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <div class="font-bold text-slate-900">Elena Rostova</div>
+                <div class="text-[11px] text-indigo-600 font-medium">Senior UI/UX Designer</div>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400">Applied 2d ago</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-[11px]">
+              <span class="text-slate-500 font-mono">Portfolio: dribbble.com/elena</span>
+              <div class="flex items-center gap-1">
+                <button class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Resume</button>
+                <button class="px-2 py-1 rounded bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold">Review</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Applicant 2 -->
+          <div class="p-3.5 hover:bg-slate-50/60 transition-colors space-y-2">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <div class="font-bold text-slate-900">Marcus Vance</div>
+                <div class="text-[11px] text-indigo-600 font-medium">Frontend Developer (Tailwind/Alpine)</div>
+              </div>
+              <span class="text-[10px] font-mono text-slate-400">Applied 4d ago</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-[11px]">
+              <span class="text-slate-500 font-mono">GitHub: github.com/mvance</span>
+              <div class="flex items-center gap-1">
+                <button class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Resume</button>
+                <button class="px-2 py-1 rounded bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold">Review</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<!-- ========================================================================= -->
+<!-- END: TAB 5 - TEAM & APPLICANTS CONTAINER                                  -->
+<!-- ========================================================================= -->
+
+
+
+  <!-- ===================================================================== -->
+  <!-- TAB 6: SYSTEM SETTINGS PANEL (Drop Zone)                              -->
+  <!-- ===================================================================== -->
+  <div x-show="activeTab === 'settings'" x-cloak class="space-y-6">
+    <!-- PLACEHOLDER: Drop CMS Config & JSON Payload Inspector Snippet Here -->
+    <div class="p-8 border-2 border-dashed border-slate-200 rounded-xl text-center text-slate-400">
+      <i data-lucide="settings" class="w-8 h-8 mx-auto mb-2 text-slate-300"></i>
+      <p class="text-sm font-medium">[ System Settings & CMS Snippet Drop Zone ]</p>
+    </div>
+  </div>
+  <!-- END TAB 6 -->
+
+</main>
+<!-- ========================================================================= -->
+<!-- END: MAIN DASHBOARD CONTAINER                                            -->
+<!-- ========================================================================= -->
+
+
+
+
+</body>
+</html>

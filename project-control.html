@@ -1,0 +1,501 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Alpine.js (Must be in <head>) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style type="text/tailwindcss">
+</style>
+</head>
+<script>
+document.addEventListener('alpine:initialized', () => {
+lucide.createIcons();
+});
+
+// Re-render icons on Alpine changes
+document.addEventListener('alpine:updated', () => {
+lucide.createIcons();
+});
+</script>  
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 antialiased min-h-screen flex overflow-x-hidden" x-data="{ expanded: false }">
+
+
+
+
+<!-- ========================================== -->
+<!-- EXPANDABLE VERTICAL NAV BAR (LEFT STRIP)   -->
+<!-- ========================================== -->
+<aside 
+class="bg-white border-r border-slate-200 flex flex-col justify-between py-4 fixed top-0 bottom-0 left-0 z-30 transition-all duration-300 ease-in-out shadow-xs overflow-x-hidden"
+:class="expanded ? 'w-64' : 'w-16'">
+
+<!-- Top Section: Logo & Navigation -->
+<div class="flex flex-col space-y-6 w-full px-3">
+
+<!-- Brand Logo & Header Toggle -->
+<div class="flex items-center justify-between w-full h-10">
+<a href="dashboard.html" class="w-10 h-10 min-w-[2.5rem] p-1 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm hover:bg-blue-900 transition-colors">
+<!-- Logo Graphic Here -->
+
+<svg class="fill-sky-50" width="2em" height="2em" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g id="#000000ff">
+<path opacity="1.00" d=" M 103.82 0.00 L 107.59 0.00 C 114.57 0.87 120.59 6.84 120.93 13.96 C 121.12 22.64 120.93 31.32 121.01 40.00 C 161.00 40.00 201.00 40.00 240.99 39.99 C 240.82 35.18 240.84 29.91 244.06 25.97 C 248.61 19.68 258.20 18.09 264.50 22.68 C 267.82 24.86 269.78 28.47 270.84 32.20 C 272.77 27.05 276.23 21.97 281.92 20.60 C 290.61 17.79 300.29 24.69 300.99 33.68 C 301.69 27.15 306.78 21.36 313.32 20.26 C 320.04 18.90 327.33 22.92 329.82 29.30 C 331.32 32.66 330.97 36.42 331.01 39.99 C 351.00 40.00 371.00 40.00 390.99 39.99 C 391.07 31.31 390.88 22.61 391.07 13.93 C 391.39 6.97 397.15 1.28 403.83 0.00 L 407.58 0.00 C 414.56 0.87 420.57 6.81 420.92 13.93 C 421.12 22.61 420.93 31.31 421.00 39.99 C 432.70 40.03 444.39 39.96 456.09 40.02 C 461.69 40.02 467.12 43.44 469.49 48.53 C 472.92 55.18 470.19 64.05 463.76 67.78 C 460.86 69.61 457.38 70.14 454.01 70.02 C 443.01 69.98 432.01 70.00 421.01 70.01 C 421.00 127.33 421.00 184.66 421.00 241.99 C 441.36 242.02 461.71 241.97 482.06 242.02 C 492.32 241.93 502.34 247.59 507.60 256.39 C 510.00 260.15 511.16 264.52 512.00 268.86 L 512.00 274.87 C 511.09 280.98 508.79 286.97 504.66 291.62 C 498.85 298.45 489.88 302.26 480.95 302.00 C 330.99 302.00 181.02 302.00 31.06 302.00 C 21.19 302.34 11.35 297.55 5.64 289.48 C 2.52 285.30 0.92 280.25 0.00 275.17 L 0.00 269.08 C 0.78 264.42 2.11 259.77 4.76 255.81 C 10.12 247.35 19.91 241.93 29.94 242.02 C 50.29 241.97 70.64 242.02 91.00 241.99 C 91.00 184.66 91.00 127.33 90.99 70.00 C 84.33 70.00 77.67 70.00 71.01 70.00 C 70.93 78.71 71.13 87.42 70.92 96.13 C 70.51 103.69 63.62 110.08 56.05 109.98 C 42.68 110.01 29.30 110.02 15.93 109.98 C 8.34 110.08 1.47 103.64 1.04 96.06 C 0.30 88.11 6.94 80.44 14.92 80.07 C 23.61 79.88 32.30 80.07 40.99 79.99 C 41.06 71.31 40.89 62.61 41.07 53.93 C 41.43 46.35 48.36 39.90 55.94 40.02 C 67.62 39.96 79.31 40.03 91.00 39.99 C 91.07 31.30 90.88 22.60 91.07 13.91 C 91.41 6.96 97.16 1.28 103.82 0.00 M 121.00 70.00 C 121.00 127.33 121.00 184.66 121.00 242.00 C 211.00 242.00 301.00 242.00 391.00 242.00 C 391.00 184.66 391.00 127.33 390.99 70.00 C 371.00 70.00 351.00 70.00 331.00 70.00 C 331.99 77.38 329.23 85.99 321.74 88.80 C 313.11 92.83 302.29 86.41 301.09 77.09 C 299.76 82.36 296.37 87.40 290.97 89.09 C 282.61 92.46 272.17 86.24 271.32 77.22 C 270.61 88.12 271.18 99.07 271.00 110.00 C 284.34 110.02 297.68 109.98 311.02 110.01 C 319.01 109.86 326.17 117.02 325.98 125.01 C 326.09 132.00 320.76 138.24 314.03 139.77 C 311.32 158.84 308.62 177.91 305.85 196.97 C 304.98 204.19 298.34 210.10 291.05 209.97 C 267.69 210.02 244.34 210.02 220.98 209.97 C 213.75 210.08 207.06 204.29 206.18 197.10 C 203.40 178.01 200.66 158.91 198.00 139.80 C 191.66 138.29 186.41 132.70 186.07 126.09 C 185.26 118.15 191.91 110.50 199.85 110.07 C 213.56 109.90 227.28 110.05 241.00 110.00 C 241.00 96.66 241.00 83.33 241.00 70.00 C 201.00 70.00 161.00 70.00 121.00 70.00 Z" />
+<path opacity="1.00" d=" M 41.10 332.87 C 43.93 331.77 47.02 332.01 50.00 331.99 C 87.00 332.01 124.00 331.99 161.00 332.00 C 161.00 345.33 161.00 358.66 160.99 372.00 C 117.66 372.00 74.33 372.00 31.00 372.00 C 31.01 363.65 30.98 355.31 31.01 346.97 C 30.96 340.77 35.20 334.81 41.10 332.87 Z" />
+<path opacity="1.00" d=" M 191.00 332.01 C 234.33 332.00 277.67 332.00 321.00 332.01 C 321.00 345.33 321.00 358.66 321.00 372.00 C 277.66 372.00 234.33 372.00 191.01 372.00 C 191.00 358.67 191.00 345.34 191.00 332.01 Z" />
+<path opacity="1.00" d=" M 351.01 332.00 C 389.35 332.00 427.69 331.99 466.03 332.01 C 473.63 331.89 480.55 338.35 480.93 345.94 C 481.09 354.62 480.96 363.31 481.00 372.00 C 437.67 372.00 394.33 372.00 351.00 372.00 C 351.00 358.66 350.99 345.33 351.01 332.00 Z" />
+<path opacity="1.00" d=" M 31.01 402.00 C 47.67 402.00 64.33 402.00 81.00 402.00 C 81.00 415.33 81.00 428.66 80.99 442.00 C 64.33 442.00 47.67 442.00 31.00 442.00 C 31.00 428.66 31.00 415.33 31.01 402.00 Z" />
+<path opacity="1.00" d=" M 111.00 402.00 C 154.34 402.00 197.67 401.99 241.00 402.01 C 241.00 415.34 241.00 428.66 241.00 442.00 C 197.66 442.00 154.33 442.00 111.00 442.00 C 111.00 428.66 111.00 415.33 111.00 402.00 Z" />
+<path opacity="1.00" d=" M 271.00 402.01 C 314.33 401.99 357.66 402.00 401.00 402.00 C 401.00 415.33 401.00 428.66 401.00 442.00 C 357.67 442.00 314.33 442.00 271.00 441.99 C 271.00 428.66 271.00 415.33 271.00 402.01 Z" />
+<path opacity="1.00" d=" M 431.00 402.00 C 447.67 402.00 464.33 402.00 481.00 402.00 C 481.00 415.33 481.00 428.66 481.00 441.99 C 464.33 442.00 447.67 442.00 431.00 441.99 C 431.00 428.66 431.00 415.33 431.00 402.00 Z" />
+<path opacity="1.00" d=" M 31.00 472.01 C 74.33 472.00 117.66 472.00 160.99 472.01 C 161.01 485.34 161.00 498.67 161.00 512.00 L 44.46 512.00 C 37.46 511.13 31.41 505.18 31.07 498.04 C 30.90 489.37 31.05 480.68 31.00 472.01 Z" />
+<path opacity="1.00" d=" M 191.01 472.01 C 234.34 472.00 277.66 472.00 320.99 472.01 C 321.01 485.34 321.00 498.67 321.00 512.00 L 191.00 512.00 C 191.00 498.67 190.99 485.34 191.01 472.01 Z" />
+<path opacity="1.00" d=" M 351.01 472.00 C 394.34 472.00 437.66 472.00 480.99 472.00 C 480.95 480.68 481.11 489.37 480.92 498.05 C 480.57 505.16 474.58 511.08 467.63 512.00 L 351.00 512.00 C 351.00 498.67 350.99 485.34 351.01 472.00 Z" />
+</g>
+</svg>
+</a>
+<span x-show="expanded" class="font-bold text-slate-800 text-base tracking-tight whitespace-nowrap overflow-hidden transition-all duration-300">
+LeadWell Pro
+</span>
+<!-- Expand Toggle Button (Hidden when sidebar is collapsed) -->
+<button 
+x-show="expanded"
+@click="expanded = !expanded" 
+class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors">
+<i data-lucide="panel-left-close" class="w-5 h-5 transition-transform duration-300" :class="{ 'rotate-180': !expanded }"></i>
+</button>
+</div>
+
+<!-- Navigation Links -->
+<!-- Navigation Links matching Wireframe Icons -->
+<nav class="flex flex-col space-y-1.5 w-full">
+
+<!-- 1. Dashboard (Gauge / Meter icon) -->
+<a href="dashboard.html" class="group relative flex items-center h-10 px-2.5 rounded-lg bg-blue-50 text-blue-600 transition-colors">
+<i data-lucide="gauge" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Dashboard</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Dashboard
+</span>
+</a>
+
+<!-- 2. Leads (Megaphone / Bullhorn icon) -->
+<a href="leads.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="megaphone" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Leads</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Leads
+</span>
+</a>
+
+<!-- 3. Projects (Briefcase icon) -->
+<a href="projects.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="briefcase" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Projects</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Projects
+</span>
+</a>
+
+<!-- NEW ITEM: Campaigns (Bar Chart / Activity icon) -->
+<a href="campaigns.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="bar-chart-3" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Campaigns</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Campaigns
+</span>
+</a>
+
+<!-- 4. Team (Users icon) -->
+<a href="team.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="users" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Team</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Team
+</span>
+</a>
+
+
+<!-- 5. Archives (Folder icon) -->
+<a href="archives.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="folders" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Archives</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Archives
+</span>
+</a>
+
+<!-- 6. CSV Upload (File-Spreadsheet / Document Upload icon) -->
+<a href="csv-upload.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="file-spreadsheet" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">CSV Upload</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+CSV Upload
+</span>
+</a>
+
+<!-- NEW ITEM: Reports & Analytics (Trending Up icon) -->
+<a href="analytics.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="line-chart" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Analytics</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Analytics
+</span>
+</a>
+
+</nav>
+</div>
+
+<!-- Bottom Section: Settings & User Profile -->
+<div class="flex flex-col space-y-1.5 w-full px-3">
+
+<!-- Account (User Cog / User Gear icon) -->
+<a href="account.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="user-cog" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Account</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Account
+</span>
+</a>
+
+<!-- Settings (Gear icon) -->
+<a href="settings.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="settings" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Settings</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Settings
+</span>
+</a>
+</div>
+</aside>
+
+<!-- END SIDE MENU AREA -->
+
+
+<!-- START TOP BAR AREA -->
+
+<div 
+class="flex-1 flex flex-col min-h-screen transition-all duration-300 ease-in-out w-full min-w-0"
+:class="expanded ? 'pl-64' : 'pl-16'">
+
+<!-- STICKY HEADER -->
+<header class="h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs w-full box-border">
+
+<!-- Left side: Expand toggle button on header + Search -->
+<div class="flex items-center space-x-4 flex-1 max-w-md min-w-0">
+<!-- Toggle button on top header bar -->
+<button 
+@click="expanded = !expanded" 
+class="p-2 rounded-lg text-blue-500 hover:bg-blue-100 hover:text-blue-800 transition-colors shrink-0">
+<i data-lucide="menu" class="w-5 h-5"></i>
+</button>
+
+<div class="relative w-full min-w-0">
+<i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+<input type="text" placeholder="Search leads, projects, or team members..." class="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all box-border">
+</div>
+</div>
+
+<!-- Right Header Actions Container -->
+<div class="flex items-center space-x-3 shrink-0" 
+     x-data="{
+        // Temporary Prototype Navigation Group (Removed in final React build)
+        prototypeIcons: [
+                { id: 'project-control', label: 'Project Control', icon: 'sliders-horizontal', href: 'project-control.html' },
+        { id: 'project-checklist', label: 'Project Checklist', icon: 'list-checks', href: 'project-checklist.html' },
+        { id: 'project-review', label: 'Project Review', icon: 'circle-dashed-check', href: 'project-review.html' },
+                { id: 'login-page', label: 'User Login View', icon: 'key-round', href: 'login.html' },
+        { id: 'team-single', label: 'Single Team Member View', icon: 'user', href: 'team-member.html' },
+        { id: 'lead-single', label: 'Single Lead View', icon: 'megaphone', href: 'single-lead.html' },
+          { id: 'client-single', label: 'Single Client View', icon: 'file-user', href: 'single-client.html' },
+           { id: 'project-single', label: 'Single Project View', icon: 'folder-git-2', href: 'single-project.html' },
+            { id: 'niche-targeting', label: 'Niche and Targeting', icon: 'target', href: 'niche.html'},
+             { id: 'proposals', label: 'Proposals', icon: 'hand-helping', href: 'proposals.html'},
+            { id: 'invoices', label: 'Invoices and Billing', icon: 'receipt-text', href: 'invoices.html' }
+
+        ],
+
+       // Permanent Header Actions Group (Kept in final build)
+        permanentIcons: [
+         { id: 'money-payroll', label: 'Notifications', icon: 'circle-dollar-sign', href: 'payroll.html' },
+          { id: 'bell-notifications', label: 'Notifications', icon: 'bell', href: '#', count: 3 },
+          { id: 'envelope-messages', label: 'Messages', icon: 'mail', href: 'message.html', count: 5 }
+        ]
+     }">
+
+  <!-- GROUP 1: Prototype Nav Icons (Temporary) -->
+  <div class="hidden md:flex items-center space-x-1 pr-2 border-r border-slate-200">
+    <template x-for="item in prototypeIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors relative group">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+      </a>
+    </template>
+  </div>
+
+  <!-- GROUP 2: Permanent Header Icons (Bell Notifications & Message Envelope with Floating Badges) -->
+  <div class="flex items-center space-x-1 pr-1">
+    <template x-for="item in permanentIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors relative">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+        
+        <!-- Floating Counter Badge -->
+        <span x-show="item.count > 0" 
+              class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white leading-none shadow-2xs"
+              x-text="item.count">
+        </span>
+      </a>
+    </template>
+  </div>
+
+  <!-- New Lead Action Button -->
+  <a href="new-lead.html">
+    <button class="px-3.5 py-2 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-2xs flex items-center space-x-2 transition-colors">
+      <i data-lucide="plus" class="w-4 h-4"></i>
+      <span class="hidden sm:inline">New Lead</span>
+    </button>
+  </a>
+</div>
+</header>
+
+
+
+<!-- End HEADER Area -->
+
+
+
+
+<main x-data="{
+    selectedBlueprint: 'small-tattoo-list.json',
+    selectedProject: 'Apex Tattoo Studio Revamp',
+    selectedContractor: 'Rahul Sharma (WP Dev)',
+    commissionPool: '\$1,250',
+    uploadSuccess: false,
+    
+    blueprints: [
+      { file: 'small-tattoo-list.json', name: 'Small Tattoo Studio Checklist', niche: 'Tattoo & Piercing', itemsCount: 8, badge: 'bg-sky-50 text-sky-600 border-sky-200' },
+      { file: 'photography-list.json', name: 'Photography Portfolio & Booking', niche: 'Media & Arts', itemsCount: 6, badge: 'bg-indigo-50 text-indigo-600 border-indigo-200' },
+      { file: 'restaurant-list.json', name: 'Restaurant Menu & Online Ordering', niche: 'Hospitality', itemsCount: 10, badge: 'bg-blue-50 text-blue-600 border-blue-200' },
+      { file: 'woocommerce-list.json', name: 'Standard WooCommerce Store', niche: 'E-Commerce', itemsCount: 12, badge: 'bg-violet-50 text-violet-600 border-violet-200' }
+    ],
+
+    projects: [
+      { id: 1, name: 'Apex Tattoo Studio Revamp', client: 'Apex Ink Co.' },
+      { id: 2, name: 'Luna Lens Portfolio', client: 'Luna Studios' },
+      { id: 3, name: 'Bistro 99 Online Menu', client: 'Bistro Group' }
+    ],
+
+    contractors: [
+      { id: 1, name: 'Rahul Sharma', role: 'WP Dev', country: 'India' },
+      { id: 2, name: 'Ayesha Khan', role: 'UI / Elementor Specialist', country: 'Pakistan' },
+      { id: 3, name: 'Tariq Mehmood', role: 'Full-Stack WP Dev', country: 'Pakistan' }
+    ],
+
+    get activeBlueprintData() {
+      switch(this.selectedBlueprint) {
+        case 'photography-list.json':
+          return [
+            { task: 'Filterable Portfolio Gallery Grid', proof: 'Screenshot' },
+            { task: 'Client Booking & Session Calendar', proof: 'Loom Video' },
+            { task: 'Clean Code & Optimized Assets', proof: 'Code Check' },
+            { task: 'No Unused Themes/Plugins', proof: 'FTP Screen' }
+          ];
+        case 'restaurant-list.json':
+          return [
+            { task: 'Interactive Food Menu Layout', proof: 'Screenshot' },
+            { task: 'Online Table Reservation Widget', proof: 'Loom Video' },
+            { task: 'Mobile Responsiveness Check', proof: 'Mobile View' },
+            { task: 'Clean FTP Structure', proof: 'FTP Screen' }
+          ];
+        case 'woocommerce-list.json':
+          return [
+            { task: 'Cart Counter & Ajax Checkout', proof: 'Loom Video' },
+            { task: 'Payment Gateway Integration', proof: 'Test Order' },
+            { task: 'Custom Elementor / Hook Setup', proof: 'Code Check' }
+          ];
+        default:
+          return [
+            { task: 'Filterable Tattoo Photo Gallery', proof: 'Screenshot' },
+            { task: 'Appointment Booking System', proof: 'Loom Video' },
+            { task: 'Custom Build / Clean Elementor', proof: 'Theme Screen' },
+            { task: 'Clean FTP: No Zips or Bloat', proof: 'FTP Screen' }
+          ];
+      }
+    },
+
+    assignBlueprint() {
+      this.uploadSuccess = true;
+      setTimeout(() => this.uploadSuccess = false, 4000);
+    }
+  }" 
+  class="w-full flex-1 px-4 sm:px-6 py-4 sm:py-6 space-y-4 text-slate-800 box-border min-w-0">
+
+  <!-- TOP HEADER SECTION -->
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full min-w-0">
+    <div class="min-w-0 flex-1">
+      <h1 class="text-base sm:text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2 min-w-0">
+        <i data-lucide="sliders-horizontal" class="w-5 h-5 text-sky-600 shrink-0"></i>
+        <span class="truncate">Project Control & JSON Setup</span>
+      </h1>
+      <p class="text-[11px] sm:text-xs text-slate-500 truncate mt-0.5">Manage SOP JSON blueprints, bind checklists, and assign developers.</p>
+    </div>
+
+    <!-- Quick Navigation: 100% fluid buttons -->
+    <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto shrink-0">
+      <a href="project-checklist.html" class="w-full sm:w-auto justify-center px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 transition-all inline-flex items-center gap-1.5 shadow-2xs">
+        <i data-lucide="check-square" class="w-3.5 h-3.5 text-sky-600"></i> Worker Portal
+      </a>
+      <a href="project-review.html" class="w-full sm:w-auto justify-center px-3 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold transition-all inline-flex items-center gap-1.5 shadow-xs">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Admin QA
+      </a>
+    </div>
+  </div>
+
+  <!-- SUCCESS NOTIFICATION BANNER -->
+  <div x-show="uploadSuccess" x-transition class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center justify-between gap-2 shadow-2xs w-full box-border">
+    <div class="flex items-center gap-2 font-semibold min-w-0">
+      <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+      <span class="truncate">Blueprint successfully bound to <span class="underline" x-text="selectedContractor"></span>.</span>
+    </div>
+    <button @click="uploadSuccess = false" class="text-emerald-600 font-bold px-1 shrink-0">✕</button>
+  </div>
+
+  <!-- MAIN STACKING GRID CONTAINER (100% Fluid Percentage-Based Columns) -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 w-full min-w-0">
+
+    <!-- LEFT COLUMN: JSON Folder & Blueprint Selection -->
+    <div class="lg:col-span-5 space-y-4 w-full min-w-0">
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-2xs space-y-3 w-full box-border min-w-0">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100 w-full min-w-0">
+          <h2 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2 min-w-0 truncate">
+            <i data-lucide="folder-open" class="w-4 h-4 text-sky-600 shrink-0"></i>
+            <span class="truncate">SOP JSON Dropzone</span>
+          </h2>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 shrink-0">Auto-Watch</span>
+        </div>
+
+        <!-- Dropzone Box -->
+        <div class="border-2 border-dashed border-slate-200 hover:border-sky-400 rounded-xl p-4 text-center bg-slate-50/50 transition-all cursor-pointer w-full box-border"
+             @click="alert('Select a .json SOP file.')">
+          <div class="w-8 h-8 rounded-full bg-sky-50 text-sky-600 mx-auto flex items-center justify-center mb-1.5">
+            <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+          </div>
+          <p class="text-xs font-semibold text-slate-700">Tap to upload niche JSON</p>
+          <p class="text-[10px] text-slate-400 mt-0.5">or drop into /assets/checklists/</p>
+        </div>
+
+        <!-- Blueprint Options -->
+        <div class="space-y-2 pt-1 w-full min-w-0">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Select Niche Blueprint:</span>
+          
+          <div class="space-y-2 w-full min-w-0">
+            <template x-for="bp in blueprints" :key="bp.file">
+              <div @click="selectedBlueprint = bp.file"
+                   :class="selectedBlueprint === bp.file ? 'border-sky-500 bg-sky-50/40 ring-1 ring-sky-400' : 'border-slate-100 hover:border-slate-200 bg-white'"
+                   class="p-3 rounded-xl border transition-all cursor-pointer flex flex-row items-center justify-between gap-2 w-full flex-wrap box-border min-w-0">
+                
+                <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                  <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0" :class="bp.badge">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <h4 class="text-xs font-bold text-slate-900 truncate" x-text="bp.name"></h4>
+                    <p class="text-[10px] text-slate-500 truncate"><span x-text="bp.niche"></span> • <span x-text="bp.itemsCount"></span> items</p>
+                  </div>
+                </div>
+
+                <span class="text-[9px] font-bold px-2 py-1 rounded bg-slate-100 text-slate-600 shrink-0 font-mono" x-text="bp.file"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Assignment Controls & Schema Preview -->
+    <div class="lg:col-span-7 space-y-4 w-full min-w-0">
+      
+      <!-- Assignment Form Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-2xs space-y-3.5 w-full box-border min-w-0">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100 gap-2 w-full min-w-0">
+          <h2 class="text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2 min-w-0 truncate">
+            <i data-lucide="user-check" class="w-4 h-4 text-indigo-600 shrink-0"></i>
+            <span class="truncate">Bind Blueprint & Assign Dev</span>
+          </h2>
+          <span class="text-[10px] font-semibold text-slate-500 font-mono shrink-0 truncate max-w-[130px]" x-text="selectedBlueprint"></span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full min-w-0">
+          <div class="space-y-1 w-full min-w-0">
+            <label class="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Target Project</label>
+            <select x-model="selectedProject" class="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-sky-500 box-border truncate">
+              <template x-for="proj in projects" :key="proj.id">
+                <option :value="proj.name" x-text="`${proj.name} (${proj.client})`"></option>
+              </template>
+            </select>
+          </div>
+
+          <div class="space-y-1 w-full min-w-0">
+            <label class="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Assigned Contractor</label>
+            <select x-model="selectedContractor" class="w-full px-3 py-2 bg-slate-50 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-sky-500 box-border truncate">
+              <template x-for="con in contractors" :key="con.id">
+                <option :value="`${con.name} (${con.role})`" x-text="`${con.name} — ${con.role} (${con.country})`"></option>
+              </template>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between pt-2 border-t border-slate-100 gap-3 w-full min-w-0">
+          <div class="flex items-center justify-between sm:justify-start gap-2 flex-1">
+            <label class="text-[10px] font-bold text-slate-600 uppercase tracking-wider shrink-0">Milestone Payout:</label>
+            <input type="text" x-model="commissionPool" class="w-full sm:w-28 px-2.5 py-1.5 bg-slate-50 rounded-xl border border-slate-200 text-xs font-bold text-emerald-600 text-center focus:outline-none focus:border-sky-500 box-border" />
+          </div>
+
+          <button @click="assignBlueprint()" class="w-full sm:w-auto px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-bold transition-all inline-flex items-center justify-center gap-1.5 shadow-xs shrink-0">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i> Deploy Checklist
+          </button>
+        </div>
+      </div>
+
+      <!-- JSON Preview Card -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-2xs space-y-3 w-full box-border min-w-0">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100 gap-2 w-full min-w-0">
+          <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider flex items-center gap-2 min-w-0 truncate">
+            <i data-lucide="file-code" class="w-4 h-4 text-indigo-600 shrink-0"></i>
+            <span class="truncate">SOP Tasks Preview</span>
+          </h3>
+          <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 font-mono shrink-0 truncate max-w-[130px]" x-text="selectedBlueprint"></span>
+        </div>
+
+        <div class="space-y-2 w-full min-w-0">
+          <template x-for="(req, index) in activeBlueprintData" :key="index">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex flex-row items-center justify-between gap-2 text-xs w-full flex-wrap box-border min-w-0">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 text-[10px] font-bold flex items-center justify-center shrink-0" x-text="index + 1"></span>
+                <span class="font-medium text-slate-800 truncate" x-text="req.task"></span>
+              </div>
+              <span class="text-[10px] font-semibold px-2 py-1 rounded bg-white border border-slate-200 text-sky-600 shrink-0 inline-flex items-center gap-1">
+                <i data-lucide="shield-alert" class="w-3 h-3"></i> <span x-text="req.proof"></span>
+              </span>
+            </div>
+          </template>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+
+
+</body>
+</html>

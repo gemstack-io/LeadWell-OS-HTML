@@ -1,0 +1,814 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Alpine.js (Must be in <head>) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style type="text/tailwindcss">
+</style>
+</head>
+<script>
+document.addEventListener('alpine:initialized', () => {
+lucide.createIcons();
+});
+
+// Re-render icons on Alpine changes
+document.addEventListener('alpine:updated', () => {
+lucide.createIcons();
+});
+</script>  
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 antialiased min-h-screen flex" x-data="{ expanded: false }">
+
+
+
+
+<!-- ========================================== -->
+<!-- EXPANDABLE VERTICAL NAV BAR (LEFT STRIP)   -->
+<!-- ========================================== -->
+<aside 
+class="bg-white border-r border-slate-200 flex flex-col justify-between py-4 fixed top-0 bottom-0 left-0 z-30 transition-all duration-300 ease-in-out shadow-xs overflow-x-hidden"
+:class="expanded ? 'w-64' : 'w-16'">
+
+<!-- Top Section: Logo & Navigation -->
+<div class="flex flex-col space-y-6 w-full px-3">
+
+<!-- Brand Logo & Header Toggle -->
+<div class="flex items-center justify-between w-full h-10">
+<a href="dashboard.html" class="w-10 h-10 min-w-[2.5rem] p-1 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm hover:bg-blue-900 transition-colors">
+<!-- Logo Graphic Here -->
+
+<svg class="fill-sky-50" width="2em" height="2em" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g id="#000000ff">
+<path opacity="1.00" d=" M 103.82 0.00 L 107.59 0.00 C 114.57 0.87 120.59 6.84 120.93 13.96 C 121.12 22.64 120.93 31.32 121.01 40.00 C 161.00 40.00 201.00 40.00 240.99 39.99 C 240.82 35.18 240.84 29.91 244.06 25.97 C 248.61 19.68 258.20 18.09 264.50 22.68 C 267.82 24.86 269.78 28.47 270.84 32.20 C 272.77 27.05 276.23 21.97 281.92 20.60 C 290.61 17.79 300.29 24.69 300.99 33.68 C 301.69 27.15 306.78 21.36 313.32 20.26 C 320.04 18.90 327.33 22.92 329.82 29.30 C 331.32 32.66 330.97 36.42 331.01 39.99 C 351.00 40.00 371.00 40.00 390.99 39.99 C 391.07 31.31 390.88 22.61 391.07 13.93 C 391.39 6.97 397.15 1.28 403.83 0.00 L 407.58 0.00 C 414.56 0.87 420.57 6.81 420.92 13.93 C 421.12 22.61 420.93 31.31 421.00 39.99 C 432.70 40.03 444.39 39.96 456.09 40.02 C 461.69 40.02 467.12 43.44 469.49 48.53 C 472.92 55.18 470.19 64.05 463.76 67.78 C 460.86 69.61 457.38 70.14 454.01 70.02 C 443.01 69.98 432.01 70.00 421.01 70.01 C 421.00 127.33 421.00 184.66 421.00 241.99 C 441.36 242.02 461.71 241.97 482.06 242.02 C 492.32 241.93 502.34 247.59 507.60 256.39 C 510.00 260.15 511.16 264.52 512.00 268.86 L 512.00 274.87 C 511.09 280.98 508.79 286.97 504.66 291.62 C 498.85 298.45 489.88 302.26 480.95 302.00 C 330.99 302.00 181.02 302.00 31.06 302.00 C 21.19 302.34 11.35 297.55 5.64 289.48 C 2.52 285.30 0.92 280.25 0.00 275.17 L 0.00 269.08 C 0.78 264.42 2.11 259.77 4.76 255.81 C 10.12 247.35 19.91 241.93 29.94 242.02 C 50.29 241.97 70.64 242.02 91.00 241.99 C 91.00 184.66 91.00 127.33 90.99 70.00 C 84.33 70.00 77.67 70.00 71.01 70.00 C 70.93 78.71 71.13 87.42 70.92 96.13 C 70.51 103.69 63.62 110.08 56.05 109.98 C 42.68 110.01 29.30 110.02 15.93 109.98 C 8.34 110.08 1.47 103.64 1.04 96.06 C 0.30 88.11 6.94 80.44 14.92 80.07 C 23.61 79.88 32.30 80.07 40.99 79.99 C 41.06 71.31 40.89 62.61 41.07 53.93 C 41.43 46.35 48.36 39.90 55.94 40.02 C 67.62 39.96 79.31 40.03 91.00 39.99 C 91.07 31.30 90.88 22.60 91.07 13.91 C 91.41 6.96 97.16 1.28 103.82 0.00 M 121.00 70.00 C 121.00 127.33 121.00 184.66 121.00 242.00 C 211.00 242.00 301.00 242.00 391.00 242.00 C 391.00 184.66 391.00 127.33 390.99 70.00 C 371.00 70.00 351.00 70.00 331.00 70.00 C 331.99 77.38 329.23 85.99 321.74 88.80 C 313.11 92.83 302.29 86.41 301.09 77.09 C 299.76 82.36 296.37 87.40 290.97 89.09 C 282.61 92.46 272.17 86.24 271.32 77.22 C 270.61 88.12 271.18 99.07 271.00 110.00 C 284.34 110.02 297.68 109.98 311.02 110.01 C 319.01 109.86 326.17 117.02 325.98 125.01 C 326.09 132.00 320.76 138.24 314.03 139.77 C 311.32 158.84 308.62 177.91 305.85 196.97 C 304.98 204.19 298.34 210.10 291.05 209.97 C 267.69 210.02 244.34 210.02 220.98 209.97 C 213.75 210.08 207.06 204.29 206.18 197.10 C 203.40 178.01 200.66 158.91 198.00 139.80 C 191.66 138.29 186.41 132.70 186.07 126.09 C 185.26 118.15 191.91 110.50 199.85 110.07 C 213.56 109.90 227.28 110.05 241.00 110.00 C 241.00 96.66 241.00 83.33 241.00 70.00 C 201.00 70.00 161.00 70.00 121.00 70.00 Z" />
+<path opacity="1.00" d=" M 41.10 332.87 C 43.93 331.77 47.02 332.01 50.00 331.99 C 87.00 332.01 124.00 331.99 161.00 332.00 C 161.00 345.33 161.00 358.66 160.99 372.00 C 117.66 372.00 74.33 372.00 31.00 372.00 C 31.01 363.65 30.98 355.31 31.01 346.97 C 30.96 340.77 35.20 334.81 41.10 332.87 Z" />
+<path opacity="1.00" d=" M 191.00 332.01 C 234.33 332.00 277.67 332.00 321.00 332.01 C 321.00 345.33 321.00 358.66 321.00 372.00 C 277.66 372.00 234.33 372.00 191.01 372.00 C 191.00 358.67 191.00 345.34 191.00 332.01 Z" />
+<path opacity="1.00" d=" M 351.01 332.00 C 389.35 332.00 427.69 331.99 466.03 332.01 C 473.63 331.89 480.55 338.35 480.93 345.94 C 481.09 354.62 480.96 363.31 481.00 372.00 C 437.67 372.00 394.33 372.00 351.00 372.00 C 351.00 358.66 350.99 345.33 351.01 332.00 Z" />
+<path opacity="1.00" d=" M 31.01 402.00 C 47.67 402.00 64.33 402.00 81.00 402.00 C 81.00 415.33 81.00 428.66 80.99 442.00 C 64.33 442.00 47.67 442.00 31.00 442.00 C 31.00 428.66 31.00 415.33 31.01 402.00 Z" />
+<path opacity="1.00" d=" M 111.00 402.00 C 154.34 402.00 197.67 401.99 241.00 402.01 C 241.00 415.34 241.00 428.66 241.00 442.00 C 197.66 442.00 154.33 442.00 111.00 442.00 C 111.00 428.66 111.00 415.33 111.00 402.00 Z" />
+<path opacity="1.00" d=" M 271.00 402.01 C 314.33 401.99 357.66 402.00 401.00 402.00 C 401.00 415.33 401.00 428.66 401.00 442.00 C 357.67 442.00 314.33 442.00 271.00 441.99 C 271.00 428.66 271.00 415.33 271.00 402.01 Z" />
+<path opacity="1.00" d=" M 431.00 402.00 C 447.67 402.00 464.33 402.00 481.00 402.00 C 481.00 415.33 481.00 428.66 481.00 441.99 C 464.33 442.00 447.67 442.00 431.00 441.99 C 431.00 428.66 431.00 415.33 431.00 402.00 Z" />
+<path opacity="1.00" d=" M 31.00 472.01 C 74.33 472.00 117.66 472.00 160.99 472.01 C 161.01 485.34 161.00 498.67 161.00 512.00 L 44.46 512.00 C 37.46 511.13 31.41 505.18 31.07 498.04 C 30.90 489.37 31.05 480.68 31.00 472.01 Z" />
+<path opacity="1.00" d=" M 191.01 472.01 C 234.34 472.00 277.66 472.00 320.99 472.01 C 321.01 485.34 321.00 498.67 321.00 512.00 L 191.00 512.00 C 191.00 498.67 190.99 485.34 191.01 472.01 Z" />
+<path opacity="1.00" d=" M 351.01 472.00 C 394.34 472.00 437.66 472.00 480.99 472.00 C 480.95 480.68 481.11 489.37 480.92 498.05 C 480.57 505.16 474.58 511.08 467.63 512.00 L 351.00 512.00 C 351.00 498.67 350.99 485.34 351.01 472.00 Z" />
+</g>
+</svg>
+</a>
+<span x-show="expanded" class="font-bold text-slate-800 text-base tracking-tight whitespace-nowrap overflow-hidden transition-all duration-300">
+LeadWell Pro
+</span>
+<!-- Expand Toggle Button (Hidden when sidebar is collapsed) -->
+<button 
+x-show="expanded"
+@click="expanded = !expanded" 
+class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors">
+<i data-lucide="panel-left-close" class="w-5 h-5 transition-transform duration-300" :class="{ 'rotate-180': !expanded }"></i>
+</button>
+</div>
+
+<!-- Navigation Links -->
+<!-- Navigation Links matching Wireframe Icons -->
+<nav class="flex flex-col space-y-1.5 w-full">
+
+<!-- 1. Dashboard (Gauge / Meter icon) -->
+<a href="dashboard.html" class="group relative flex items-center h-10 px-2.5 rounded-lg bg-blue-50 text-blue-600 transition-colors">
+<i data-lucide="gauge" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Dashboard</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Dashboard
+</span>
+</a>
+
+<!-- 2. Leads (Megaphone / Bullhorn icon) -->
+<a href="leads.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="megaphone" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Leads</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Leads
+</span>
+</a>
+
+<!-- 3. Projects (Briefcase icon) -->
+<a href="projects.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="briefcase" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Projects</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Projects
+</span>
+</a>
+
+<!-- NEW ITEM: Campaigns (Bar Chart / Activity icon) -->
+<a href="campaigns.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="bar-chart-3" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Campaigns</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Campaigns
+</span>
+</a>
+
+<!-- 4. Team (Users icon) -->
+<a href="team.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="users" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Team</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Team
+</span>
+</a>
+
+
+<!-- 5. Archives (Folder icon) -->
+<a href="archives.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="folders" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Archives</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Archives
+</span>
+</a>
+
+<!-- 6. CSV Upload (File-Spreadsheet / Document Upload icon) -->
+<a href="csv-upload.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="file-spreadsheet" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">CSV Upload</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+CSV Upload
+</span>
+</a>
+
+<!-- NEW ITEM: Reports & Analytics (Trending Up icon) -->
+<a href="analytics.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="line-chart" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Analytics</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Analytics
+</span>
+</a>
+
+</nav>
+</div>
+
+<!-- Bottom Section: Settings & User Profile -->
+<div class="flex flex-col space-y-1.5 w-full px-3">
+
+<!-- Account (User Cog / User Gear icon) -->
+<a href="account.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="user-cog" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Account</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Account
+</span>
+</a>
+
+<!-- Settings (Gear icon) -->
+<a href="settings.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="settings" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Settings</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Settings
+</span>
+</a>
+</div>
+</aside>
+
+<!-- END SIDE MENU AREA -->
+
+
+<!-- START TOP BAR AREA -->
+
+<div 
+class="flex-1 flex flex-col min-h-screen transition-all duration-300 ease-in-out w-full min-w-0"
+:class="expanded ? 'pl-64' : 'pl-16'">
+
+<!-- STICKY HEADER -->
+<header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+
+<!-- Left side: Expand toggle button on header + Search -->
+<div class="flex items-center space-x-4 flex-1 max-w-md">
+<!-- Toggle button on top header bar -->
+<button 
+@click="expanded = !expanded" 
+class="p-2 rounded-lg text-blue-500 hover:bg-blue-100 hover:text-blue-800 transition-colors">
+<i data-lucide="menu" class="w-5 h-5"></i>
+</button>
+
+<div class="relative w-full">
+<i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+<input type="text" placeholder="Search leads, projects, or team members..." class="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
+</div>
+</div>
+
+<!-- Right Header Actions Container -->
+<div class="flex items-center space-x-3" 
+     x-data="{
+              // Temporary Prototype Navigation Group (Removed in final React build)
+        prototypeIcons: [
+                { id: 'project-control', label: 'Project Control', icon: 'sliders-horizontal', href: 'project-control.html' },
+        { id: 'project-checklist', label: 'Project Checklist', icon: 'list-checks', href: 'project-checklist.html' },
+        { id: 'project-review', label: 'Project Review', icon: 'circle-dashed-check', href: 'project-review.html' },
+                { id: 'login-page', label: 'User Login View', icon: 'key-round', href: 'login.html' },
+        { id: 'team-single', label: 'Single Team Member View', icon: 'user', href: 'team-member.html' },
+        { id: 'lead-single', label: 'Single Lead View', icon: 'megaphone', href: 'single-lead.html' },
+          { id: 'client-single', label: 'Single Client View', icon: 'file-user', href: 'single-client.html' },
+           { id: 'project-single', label: 'Single Project View', icon: 'folder-git-2', href: 'single-project.html' },
+            { id: 'niche-targeting', label: 'Niche and Targeting', icon: 'target', href: 'niche.html'},
+             { id: 'proposals', label: 'Proposals', icon: 'hand-helping', href: 'proposals.html'},
+            { id: 'invoices', label: 'Invoices and Billing', icon: 'receipt-text', href: 'invoices.html' }
+
+        ],
+
+        // Permanent Header Actions Group (Kept in final build)
+        permanentIcons: [
+         { id: 'money-payroll', label: 'Notifications', icon: 'circle-dollar-sign', href: 'payroll.html' },
+          { id: 'bell-notifications', label: 'Notifications', icon: 'bell', href: '#', count: 3 },
+          { id: 'envelope-messages', label: 'Messages', icon: 'mail', href: 'message.html', count: 5 }
+        ]
+     }">
+
+  <!-- GROUP 1: Prototype Nav Icons (Temporary) -->
+  <div class="flex items-center space-x-1 pr-2 border-r border-slate-200">
+    <template x-for="item in prototypeIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors relative group">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+      </a>
+    </template>
+  </div>
+
+  <!-- GROUP 2: Permanent Header Icons (Bell Notifications & Message Envelope with Floating Badges) -->
+  <div class="flex items-center space-x-1 pr-1">
+    <template x-for="item in permanentIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors relative">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+        
+        <!-- Floating Counter Badge -->
+        <span x-show="item.count > 0" 
+              class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white leading-none shadow-2xs"
+              x-text="item.count">
+        </span>
+      </a>
+    </template>
+  </div>
+
+  <!-- New Lead Action Button -->
+  <a href="new-lead.html">
+    <button class="px-3.5 py-2 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-2xs flex items-center space-x-2 transition-colors">
+      <i data-lucide="plus" class="w-4 h-4"></i>
+      <span>New Lead</span>
+    </button>
+  </a>
+</div>
+</header>
+
+
+
+<!-- End HEADER Area -->
+
+
+
+
+
+
+
+<!-- ========================================================================= -->
+<!-- START: MAIN PAYROLL DASHBOARD CONTAINER                                   -->
+<!-- ========================================================================= -->
+<main 
+  class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6 font-sans text-slate-800"
+  x-data="{
+    viewMode: 'admin', // 'admin' or 'sales'
+    selectedMonth: 'all',
+    selectedYear: '2026',
+    sortBy: 'latest', // 'latest', 'oldest', 'highest', 'lowest'
+    
+    // Dispute Modal State
+    showDisputeModal: false,
+    disputeData: {
+      targetSecretary: true,
+      targetAdmin: true,
+      selectedProject: 'Apex Portal Redesign (09/16/2026)',
+      message: ''
+    },
+
+    // Toast Notification State
+    toastMessage: '',
+    showToast(msg) {
+      this.toastMessage = msg;
+      setTimeout(() => { this.toastMessage = ''; }, 3500);
+    },
+
+    // Export Handlers
+    exportCSV() {
+      this.showToast('CSV report generated & download started.');
+    },
+    exportPDF() {
+      this.showToast('PDF summary report generated & download started.');
+    }
+  }">
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 1. MEMBER HERO PROFILE & SUMMARY BAR                                  -->
+  <!-- --------------------------------------------------------------------- -->
+  <header class="w-full bg-white/70 backdrop-blur-xl border border-white/80 shadow-xs rounded-2xl p-5 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+    
+    <!-- Member Avatar & Role Meta -->
+    <div class="flex items-center gap-4">
+      <div class="relative shrink-0">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-400 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-sky-500/20">
+          JD
+        </div>
+        <span class="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white"></span>
+        </span>
+      </div>
+
+      <div>
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <h1 class="text-xl font-bold text-slate-900 tracking-tight">John Doe</h1>
+          <span class="px-2.5 py-0.5 bg-sky-50 text-sky-700 text-xs font-semibold rounded-md border border-sky-200">
+            Senior Full-Stack Lead
+          </span>
+          <span class="px-2.5 py-0.5 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-md border border-indigo-200">
+            Base Cut: 15%
+          </span>
+        </div>
+        <p class="text-xs text-slate-500 mt-1">
+          Payroll Ledger & Commission Payout Breakdown
+        </p>
+      </div>
+    </div>
+
+    <!-- Quick Rolling KPI Totals -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full lg:w-auto shrink-0">
+      <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-3">
+        <span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">Total Lifetime</span>
+        <span class="text-lg font-extrabold text-slate-900 font-mono">$42,850.00</span>
+      </div>
+
+      <div class="bg-sky-50/60 border border-sky-200/60 rounded-xl p-3">
+        <span class="text-[11px] font-semibold text-sky-700 uppercase tracking-wider block">Filtered Period</span>
+        <span class="text-lg font-extrabold text-sky-900 font-mono">$12,400.00</span>
+      </div>
+
+      <div class="bg-indigo-50/60 border border-indigo-200/60 rounded-xl p-3 col-span-2 sm:col-span-1">
+        <span class="text-[11px] font-semibold text-indigo-700 uppercase tracking-wider block">Pending Queue</span>
+        <span class="text-lg font-extrabold text-indigo-900 font-mono">$3,150.00</span>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 2. FILTER TOOLBAR, DISCREPANCY BUTTON & EXPORT EMBLEMS               -->
+  <!-- --------------------------------------------------------------------- -->
+  <div class="bg-white/70 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 shadow-2xs flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+    
+    <!-- Left Group: Filters & Sorting Dropdowns -->
+    <div class="flex flex-wrap items-center gap-2.5 text-xs">
+      
+      <!-- Month Filter -->
+      <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500 transition-all">
+        <i data-lucide="calendar" class="w-3.5 h-3.5 text-sky-600"></i>
+        <select x-model="selectedMonth" class="bg-transparent font-medium text-slate-700 outline-none cursor-pointer">
+          <option value="all">All Months</option>
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+
+      <!-- Year Filter -->
+      <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-sky-500/20 focus-within:border-sky-500 transition-all">
+        <i data-lucide="filter" class="w-3.5 h-3.5 text-sky-600"></i>
+        <select x-model="selectedYear" class="bg-transparent font-medium text-slate-700 outline-none cursor-pointer">
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+        </select>
+      </div>
+
+      <!-- Sort Filter -->
+      <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-indigo-500/20 focus-within:border-indigo-500 transition-all">
+        <i data-lucide="arrow-up-down" class="w-3.5 h-3.5 text-indigo-600"></i>
+        <select x-model="sortBy" class="bg-transparent font-medium text-slate-700 outline-none cursor-pointer">
+          <option value="latest">Sort: Latest First (Descending)</option>
+          <option value="oldest">Sort: Oldest First (Ascending)</option>
+          <option value="highest">Sort: Highest Payout</option>
+          <option value="lowest">Sort: Lowest Payout</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- Right Group: Role View Switcher, Discrepancy Alert & Export Emblems -->
+    <div class="flex flex-wrap items-center justify-between lg:justify-end gap-3 shrink-0">
+      
+      <!-- Flag Discrepancy Button (Soft Red Alert) -->
+      <button 
+        @click="showDisputeModal = true" 
+        class="px-3 py-2 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200/80 text-rose-700 hover:text-rose-800 font-bold text-xs flex items-center gap-1.5 transition-all active:scale-95 shadow-2xs">
+        <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-rose-600"></i>
+        <span>Flag Discrepancy</span>
+      </button>
+
+      <!-- Role View Switcher -->
+      <div class="bg-slate-100 p-1 rounded-xl flex items-center gap-1 border border-slate-200/60">
+        <button 
+          @click="viewMode = 'admin'" 
+          :class="viewMode === 'admin' ? 'bg-white text-indigo-700 shadow-2xs font-bold' : 'text-slate-600 hover:text-slate-900 font-medium'"
+          class="px-3 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span>Admin View</span>
+        </button>
+        
+        <button 
+          @click="viewMode = 'sales'" 
+          :class="viewMode === 'sales' ? 'bg-indigo-600 text-white shadow-2xs font-bold' : 'text-slate-600 hover:text-slate-900 font-medium'"
+          class="px-3 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5">
+          <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+          <span>Sales Rep View</span>
+        </button>
+      </div>
+
+    <!-- Clean, Consistent Export Buttons -->
+<div class="flex items-center gap-2 border-l border-slate-200/80 pl-2">
+  
+  <!-- Export CSV Button -->
+  <button 
+    @click="exportCSV()" 
+    title="Export CSV"
+    class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-sky-50 border border-slate-200/90 hover:border-sky-300 text-slate-700 hover:text-sky-700 text-xs font-bold shadow-2xs transition-all active:scale-95">
+    <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-sky-600"></i>
+    <span>Export CSV</span>
+  </button>
+
+  <!-- Export PDF Button -->
+  <button 
+    @click="exportPDF()" 
+    title="Export PDF"
+    class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white hover:bg-indigo-50 border border-slate-200/90 hover:border-indigo-300 text-slate-700 hover:text-indigo-700 text-xs font-bold shadow-2xs transition-all active:scale-95">
+    <i data-lucide="file-text" class="w-3.5 h-3.5 text-indigo-600"></i>
+    <span>Export PDF</span>
+  </button>
+
+</div>
+
+    </div>
+
+  </div>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 3. PAYROLL DATA TABLE CONTAINER                                       -->
+  <!-- --------------------------------------------------------------------- -->
+  <div class="overflow-x-auto bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-xs">
+    <table class="table table-xs w-full text-left">
+      
+      <!-- Dynamic Table Header -->
+      <thead>
+        <tr class="bg-slate-100/80 text-slate-700 font-bold border-b border-slate-200/80 uppercase text-[11px] tracking-wider">
+          <th class="py-3.5 px-4">Date</th>
+          <th class="py-3.5 px-4">Project / Deal</th>
+          <th class="py-3.5 px-4">Total Commission Pool</th>
+          
+          <!-- View Specific Columns -->
+          <template x-if="viewMode === 'admin'">
+            <th class="py-3.5 px-4 text-slate-900">Sales Rep Cut % ($)</th>
+          </template>
+
+          <template x-if="viewMode === 'sales'">
+            <th class="py-3.5 px-4 text-indigo-700 bg-indigo-50/50">Creative Net Payout ($)</th>
+          </template>
+
+          <th class="py-3.5 px-4">Helper Cut</th>
+
+          <template x-if="viewMode === 'admin'">
+            <th class="py-3.5 px-4 text-indigo-700 bg-indigo-50/50">Your Net Payout $</th>
+          </template>
+
+          <template x-if="viewMode === 'sales'">
+            <th class="py-3.5 px-4">Your Net Payout %</th>
+          </template>
+
+          <th class="py-3.5 px-4 text-right">Status</th>
+        </tr>
+      </thead>
+
+      <!-- Zebra-Striped Table Body -->
+      <tbody class="divide-y divide-slate-100 text-xs font-medium text-slate-700">
+        
+        <!-- ROW 1 (Latest - September 2026) -->
+        <tr class="hover:bg-sky-50/40 transition-colors bg-white">
+          <td class="py-3.5 px-4 font-mono font-semibold text-slate-900">09/16/2026</td>
+          <td class="py-3.5 px-4">
+            <div class="font-bold text-slate-900">Apex Portal Redesign</div>
+            <div class="text-[10px] text-slate-400">Client: Acme Corp</div>
+          </td>
+          <td class="py-3.5 px-4 font-mono text-slate-600">$10,000.00</td>
+          
+          <!-- Admin View Column -->
+          <template x-if="viewMode === 'admin'">
+            <td class="py-3.5 px-4 font-mono text-slate-800">
+              <span class="text-slate-500 text-[10px]">(15%)</span> $1,500.00
+            </td>
+          </template>
+
+          <!-- Sales Rep View Swapped Column -->
+          <template x-if="viewMode === 'sales'">
+            <td class="py-3.5 px-4 font-mono font-bold text-emerald-600 bg-indigo-50/30">
+              $8,200.00
+            </td>
+          </template>
+
+          <!-- Helper Cut Column -->
+          <td class="py-3.5 px-4 font-mono">
+            <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+              -$300.00 <span class="text-[9px] text-amber-600 font-normal">(UI Lead)</span>
+            </span>
+          </td>
+
+          <!-- Admin Final Payout Column -->
+          <template x-if="viewMode === 'admin'">
+            <td class="py-3.5 px-4 font-mono font-bold text-indigo-600 bg-indigo-50/30">
+              $8,200.00
+            </td>
+          </template>
+
+          <!-- Sales Rep Moved Column -->
+          <template x-if="viewMode === 'sales'">
+            <td class="py-3.5 px-4 font-mono text-slate-600">
+              15% ($1,500.00)
+            </td>
+          </template>
+
+          <td class="py-3.5 px-4 text-right">
+            <span class="inline-flex items-center gap-1 font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+              <i data-lucide="check-circle-2" class="w-3 h-3"></i> Paid
+            </span>
+          </td>
+        </tr>
+
+        <!-- ROW 2 (Zebra Striped - August 2026) -->
+        <tr class="hover:bg-sky-50/40 transition-colors bg-slate-50/60">
+          <td class="py-3.5 px-4 font-mono font-semibold text-slate-900">08/28/2026</td>
+          <td class="py-3.5 px-4">
+            <div class="font-bold text-slate-900">Vector Logo & Brand Kit</div>
+            <div class="text-[10px] text-slate-400">Client: Cyberdyne</div>
+          </td>
+          <td class="py-3.5 px-4 font-mono text-slate-600">$3,500.00</td>
+          
+          <template x-if="viewMode === 'admin'">
+            <td class="py-3.5 px-4 font-mono text-slate-800">
+              <span class="text-slate-500 text-[10px]">(15%)</span> $525.00
+            </td>
+          </template>
+
+          <template x-if="viewMode === 'sales'">
+            <td class="py-3.5 px-4 font-mono font-bold text-emerald-600 bg-indigo-50/30">
+              $2,975.00
+            </td>
+          </template>
+
+          <td class="py-3.5 px-4 font-mono text-slate-400">
+            — <span class="text-[10px] text-slate-400">(Solo Project)</span>
+          </td>
+
+          <template x-if="viewMode === 'admin'">
+            <td class="py-3.5 px-4 font-mono font-bold text-indigo-600 bg-indigo-50/30">
+              $2,975.00
+            </td>
+          </template>
+
+          <template x-if="viewMode === 'sales'">
+            <td class="py-3.5 px-4 font-mono text-slate-600">
+              15% ($525.00)
+            </td>
+          </template>
+
+          <td class="py-3.5 px-4 text-right">
+            <span class="inline-flex items-center gap-1 font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+              <i data-lucide="clock" class="w-3 h-3"></i> Processing
+            </span>
+          </td>
+        </tr>
+
+        <!-- ROW 3 (White Striped - August 2026 Group Split) -->
+        <tr class="hover:bg-sky-50/40 transition-colors bg-white">
+          <td class="py-3.5 px-4 font-mono font-semibold text-slate-900">08/10/2026</td>
+          <td class="py-3.5 px-4">
+            <div class="font-bold text-slate-900">SaaS Mobile Application</div>
+            <div class="text-[10px] text-slate-400">Client: Nexus Health</div>
+          </td>
+          <td class="py-3.5 px-4 font-mono text-slate-600">$15,000.00</td>
+          
+          <template x-if="viewMode === 'admin'">
+            <td class="py-3.5 px-4 font-mono text-slate-800">
+              <span class="text-slate-500 text-[10px]">(15%)</span> $2,250.00
+            </td>
+          </template>
+
+          <template x-if="viewMode === 'sales'">
+            <td class="py-3.5 px-4 font-mono font-bold text-emerald-600 bg-indigo-50/30">
+              $12,150.00
+            </td>
+          </template>
+
+          <td class="py-3.5 px-4 font-mono">
+            <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+              -$600.00 <span class="text-[9px] text-amber-600 font-normal">(Tech Split)</span>
+            </span>
+          </td>
+
+          <template x-if="viewMode === 'admin'">
+            <td class="py-3.5 px-4 font-mono font-bold text-indigo-600 bg-indigo-50/30">
+              $12,150.00
+            </td>
+          </template>
+
+          <template x-if="viewMode === 'sales'">
+            <td class="py-3.5 px-4 font-mono text-slate-600">
+              15% ($2,250.00)
+            </td>
+          </template>
+
+          <td class="py-3.5 px-4 text-right">
+            <span class="inline-flex items-center gap-1 font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+              <i data-lucide="check-circle-2" class="w-3 h-3"></i> Paid
+            </span>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 4. CLEAN & PROFESSIONAL PAGINATION FOOTER                             -->
+  <!-- --------------------------------------------------------------------- -->
+  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1 px-1">
+    
+    <!-- Record Counter -->
+    <div class="text-xs font-medium text-slate-500">
+      Showing <span class="font-bold text-slate-800">1–3</span> of <span class="font-bold text-slate-800">24</span> Payout Records
+    </div>
+
+    <!-- Clean Button Pagination -->
+    <nav class="inline-flex items-center gap-1 bg-white/70 backdrop-blur-md p-1 rounded-xl border border-slate-200/80 shadow-2xs">
+      <!-- Previous Page -->
+      <button 
+        disabled
+        class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-300 bg-slate-50 cursor-not-allowed border border-slate-100 transition-all">
+        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+      </button>
+
+      <!-- Page Numbers -->
+      <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-bold bg-sky-600 text-white shadow-2xs transition-all">
+        1
+      </button>
+
+      <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all">
+        2
+      </button>
+
+      <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all">
+        3
+      </button>
+
+      <span class="px-1 text-slate-400 text-xs">...</span>
+
+      <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all">
+        8
+      </button>
+
+      <!-- Next Page -->
+      <button class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200/60 transition-all">
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- --------------------------------------------------------------------- -->
+  <!-- 5. PAY DISCREPANCY DISPUTE MODAL                                      -->
+  <!-- --------------------------------------------------------------------- -->
+  <div 
+    x-show="showDisputeModal" 
+    x-cloak 
+    x-transition.opacity
+    class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+    
+    <div 
+      @click.away="showDisputeModal = false" 
+      class="bg-white/95 backdrop-blur-xl rounded-2xl max-w-lg w-full p-6 space-y-5 shadow-2xl border border-white/80">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 bg-rose-50 text-rose-600 rounded-xl border border-rose-100">
+            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">Flag Pay Discrepancy</h3>
+            <p class="text-xs text-slate-500">Submit a formal review alert to leadership</p>
+          </div>
+        </div>
+        <button @click="showDisputeModal = false" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="space-y-4 text-xs">
+        
+        <!-- Target Alert Recipients (Checkboxes) -->
+        <div>
+          <label class="font-bold text-slate-700 block mb-2">Send Alert To:</label>
+          <div class="grid grid-cols-2 gap-2.5">
+            <label class="flex items-center gap-2 p-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl cursor-pointer transition-all">
+              <input type="checkbox" x-model="disputeData.targetSecretary" class="checkbox checkbox-xs checkbox-sky rounded">
+              <span class="font-semibold text-slate-700">Secretary Desk</span>
+            </label>
+
+            <label class="flex items-center gap-2 p-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl cursor-pointer transition-all">
+              <input type="checkbox" x-model="disputeData.targetAdmin" class="checkbox checkbox-xs checkbox-indigo rounded">
+              <span class="font-semibold text-slate-700">Admin / Leadership</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Target Project Selection -->
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Target Payout Item *</label>
+          <select x-model="disputeData.selectedProject" class="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-medium text-slate-800 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 transition-all">
+            <option>Apex Portal Redesign (09/16/2026) — $8,200.00</option>
+            <option>Vector Logo & Brand Kit (08/28/2026) — $2,975.00</option>
+            <option>SaaS Mobile Application (08/10/2026) — $12,150.00</option>
+          </select>
+        </div>
+
+        <!-- Message Box -->
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Discrepancy Explanation *</label>
+          <textarea 
+            x-model="disputeData.message" 
+            rows="3" 
+            placeholder="e.g., Tech lead agreed to transfer 5% of their helper cut over to my payout for extra backend work on Apex Portal..." 
+            class="w-full p-3 rounded-xl border border-slate-200 bg-white font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 resize-none transition-all">
+          </textarea>
+        </div>
+
+      </div>
+
+      <!-- Modal Actions -->
+      <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+        <button 
+          @click="showDisputeModal = false" 
+          class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition-colors">
+          Cancel
+        </button>
+
+        <button 
+          @click="showDisputeModal = false; showToast('Discrepancy alert dispatched to Secretary & Admin queues!')" 
+          class="inline-flex items-center gap-1.5 px-5 py-2 bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-bold rounded-xl text-xs shadow-md shadow-sky-500/20 active:scale-95 transition-all">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          <span>Send Alert</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Feedback Banner -->
+  <div 
+    x-show="toastMessage" 
+    x-transition 
+    x-cloak 
+    class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl text-xs font-bold flex items-center gap-2.5 border border-slate-700">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+    <span x-text="toastMessage"></span>
+  </div>
+
+</main>
+<!-- ========================================================================= -->
+<!-- END: MAIN PAYROLL DASHBOARD CONTAINER                                     -->
+<!-- ========================================================================= -->
+
+
+
+
+</body>
+</html>

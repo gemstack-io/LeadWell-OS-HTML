@@ -1,0 +1,1174 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Alpine.js (Must be in <head>) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style type="text/tailwindcss">
+</style>
+</head>
+<script>
+document.addEventListener('alpine:initialized', () => {
+lucide.createIcons();
+});
+
+// Re-render icons on Alpine changes
+document.addEventListener('alpine:updated', () => {
+lucide.createIcons();
+});
+</script>  
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 antialiased min-h-screen flex" x-data="{ expanded: false }">
+
+
+
+
+<!-- ========================================== -->
+<!-- EXPANDABLE VERTICAL NAV BAR (LEFT STRIP)   -->
+<!-- ========================================== -->
+<aside 
+class="bg-white border-r border-slate-200 flex flex-col justify-between py-4 fixed top-0 bottom-0 left-0 z-30 transition-all duration-300 ease-in-out shadow-xs overflow-x-hidden"
+:class="expanded ? 'w-64' : 'w-16'">
+
+<!-- Top Section: Logo & Navigation -->
+<div class="flex flex-col space-y-6 w-full px-3">
+
+<!-- Brand Logo & Header Toggle -->
+<div class="flex items-center justify-between w-full h-10">
+<a href="dashboard.html" class="w-10 h-10 min-w-[2.5rem] p-1 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm hover:bg-blue-900 transition-colors">
+<!-- Logo Graphic Here -->
+
+<svg class="fill-sky-50" width="2em" height="2em" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g id="#000000ff">
+<path opacity="1.00" d=" M 103.82 0.00 L 107.59 0.00 C 114.57 0.87 120.59 6.84 120.93 13.96 C 121.12 22.64 120.93 31.32 121.01 40.00 C 161.00 40.00 201.00 40.00 240.99 39.99 C 240.82 35.18 240.84 29.91 244.06 25.97 C 248.61 19.68 258.20 18.09 264.50 22.68 C 267.82 24.86 269.78 28.47 270.84 32.20 C 272.77 27.05 276.23 21.97 281.92 20.60 C 290.61 17.79 300.29 24.69 300.99 33.68 C 301.69 27.15 306.78 21.36 313.32 20.26 C 320.04 18.90 327.33 22.92 329.82 29.30 C 331.32 32.66 330.97 36.42 331.01 39.99 C 351.00 40.00 371.00 40.00 390.99 39.99 C 391.07 31.31 390.88 22.61 391.07 13.93 C 391.39 6.97 397.15 1.28 403.83 0.00 L 407.58 0.00 C 414.56 0.87 420.57 6.81 420.92 13.93 C 421.12 22.61 420.93 31.31 421.00 39.99 C 432.70 40.03 444.39 39.96 456.09 40.02 C 461.69 40.02 467.12 43.44 469.49 48.53 C 472.92 55.18 470.19 64.05 463.76 67.78 C 460.86 69.61 457.38 70.14 454.01 70.02 C 443.01 69.98 432.01 70.00 421.01 70.01 C 421.00 127.33 421.00 184.66 421.00 241.99 C 441.36 242.02 461.71 241.97 482.06 242.02 C 492.32 241.93 502.34 247.59 507.60 256.39 C 510.00 260.15 511.16 264.52 512.00 268.86 L 512.00 274.87 C 511.09 280.98 508.79 286.97 504.66 291.62 C 498.85 298.45 489.88 302.26 480.95 302.00 C 330.99 302.00 181.02 302.00 31.06 302.00 C 21.19 302.34 11.35 297.55 5.64 289.48 C 2.52 285.30 0.92 280.25 0.00 275.17 L 0.00 269.08 C 0.78 264.42 2.11 259.77 4.76 255.81 C 10.12 247.35 19.91 241.93 29.94 242.02 C 50.29 241.97 70.64 242.02 91.00 241.99 C 91.00 184.66 91.00 127.33 90.99 70.00 C 84.33 70.00 77.67 70.00 71.01 70.00 C 70.93 78.71 71.13 87.42 70.92 96.13 C 70.51 103.69 63.62 110.08 56.05 109.98 C 42.68 110.01 29.30 110.02 15.93 109.98 C 8.34 110.08 1.47 103.64 1.04 96.06 C 0.30 88.11 6.94 80.44 14.92 80.07 C 23.61 79.88 32.30 80.07 40.99 79.99 C 41.06 71.31 40.89 62.61 41.07 53.93 C 41.43 46.35 48.36 39.90 55.94 40.02 C 67.62 39.96 79.31 40.03 91.00 39.99 C 91.07 31.30 90.88 22.60 91.07 13.91 C 91.41 6.96 97.16 1.28 103.82 0.00 M 121.00 70.00 C 121.00 127.33 121.00 184.66 121.00 242.00 C 211.00 242.00 301.00 242.00 391.00 242.00 C 391.00 184.66 391.00 127.33 390.99 70.00 C 371.00 70.00 351.00 70.00 331.00 70.00 C 331.99 77.38 329.23 85.99 321.74 88.80 C 313.11 92.83 302.29 86.41 301.09 77.09 C 299.76 82.36 296.37 87.40 290.97 89.09 C 282.61 92.46 272.17 86.24 271.32 77.22 C 270.61 88.12 271.18 99.07 271.00 110.00 C 284.34 110.02 297.68 109.98 311.02 110.01 C 319.01 109.86 326.17 117.02 325.98 125.01 C 326.09 132.00 320.76 138.24 314.03 139.77 C 311.32 158.84 308.62 177.91 305.85 196.97 C 304.98 204.19 298.34 210.10 291.05 209.97 C 267.69 210.02 244.34 210.02 220.98 209.97 C 213.75 210.08 207.06 204.29 206.18 197.10 C 203.40 178.01 200.66 158.91 198.00 139.80 C 191.66 138.29 186.41 132.70 186.07 126.09 C 185.26 118.15 191.91 110.50 199.85 110.07 C 213.56 109.90 227.28 110.05 241.00 110.00 C 241.00 96.66 241.00 83.33 241.00 70.00 C 201.00 70.00 161.00 70.00 121.00 70.00 Z" />
+<path opacity="1.00" d=" M 41.10 332.87 C 43.93 331.77 47.02 332.01 50.00 331.99 C 87.00 332.01 124.00 331.99 161.00 332.00 C 161.00 345.33 161.00 358.66 160.99 372.00 C 117.66 372.00 74.33 372.00 31.00 372.00 C 31.01 363.65 30.98 355.31 31.01 346.97 C 30.96 340.77 35.20 334.81 41.10 332.87 Z" />
+<path opacity="1.00" d=" M 191.00 332.01 C 234.33 332.00 277.67 332.00 321.00 332.01 C 321.00 345.33 321.00 358.66 321.00 372.00 C 277.66 372.00 234.33 372.00 191.01 372.00 C 191.00 358.67 191.00 345.34 191.00 332.01 Z" />
+<path opacity="1.00" d=" M 351.01 332.00 C 389.35 332.00 427.69 331.99 466.03 332.01 C 473.63 331.89 480.55 338.35 480.93 345.94 C 481.09 354.62 480.96 363.31 481.00 372.00 C 437.67 372.00 394.33 372.00 351.00 372.00 C 351.00 358.66 350.99 345.33 351.01 332.00 Z" />
+<path opacity="1.00" d=" M 31.01 402.00 C 47.67 402.00 64.33 402.00 81.00 402.00 C 81.00 415.33 81.00 428.66 80.99 442.00 C 64.33 442.00 47.67 442.00 31.00 442.00 C 31.00 428.66 31.00 415.33 31.01 402.00 Z" />
+<path opacity="1.00" d=" M 111.00 402.00 C 154.34 402.00 197.67 401.99 241.00 402.01 C 241.00 415.34 241.00 428.66 241.00 442.00 C 197.66 442.00 154.33 442.00 111.00 442.00 C 111.00 428.66 111.00 415.33 111.00 402.00 Z" />
+<path opacity="1.00" d=" M 271.00 402.01 C 314.33 401.99 357.66 402.00 401.00 402.00 C 401.00 415.33 401.00 428.66 401.00 442.00 C 357.67 442.00 314.33 442.00 271.00 441.99 C 271.00 428.66 271.00 415.33 271.00 402.01 Z" />
+<path opacity="1.00" d=" M 431.00 402.00 C 447.67 402.00 464.33 402.00 481.00 402.00 C 481.00 415.33 481.00 428.66 481.00 441.99 C 464.33 442.00 447.67 442.00 431.00 441.99 C 431.00 428.66 431.00 415.33 431.00 402.00 Z" />
+<path opacity="1.00" d=" M 31.00 472.01 C 74.33 472.00 117.66 472.00 160.99 472.01 C 161.01 485.34 161.00 498.67 161.00 512.00 L 44.46 512.00 C 37.46 511.13 31.41 505.18 31.07 498.04 C 30.90 489.37 31.05 480.68 31.00 472.01 Z" />
+<path opacity="1.00" d=" M 191.01 472.01 C 234.34 472.00 277.66 472.00 320.99 472.01 C 321.01 485.34 321.00 498.67 321.00 512.00 L 191.00 512.00 C 191.00 498.67 190.99 485.34 191.01 472.01 Z" />
+<path opacity="1.00" d=" M 351.01 472.00 C 394.34 472.00 437.66 472.00 480.99 472.00 C 480.95 480.68 481.11 489.37 480.92 498.05 C 480.57 505.16 474.58 511.08 467.63 512.00 L 351.00 512.00 C 351.00 498.67 350.99 485.34 351.01 472.00 Z" />
+</g>
+</svg>
+</a>
+<span x-show="expanded" class="font-bold text-slate-800 text-base tracking-tight whitespace-nowrap overflow-hidden transition-all duration-300">
+LeadWell Pro
+</span>
+<!-- Expand Toggle Button (Hidden when sidebar is collapsed) -->
+<button 
+x-show="expanded"
+@click="expanded = !expanded" 
+class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors">
+<i data-lucide="panel-left-close" class="w-5 h-5 transition-transform duration-300" :class="{ 'rotate-180': !expanded }"></i>
+</button>
+</div>
+
+<!-- Navigation Links -->
+<!-- Navigation Links matching Wireframe Icons -->
+<nav class="flex flex-col space-y-1.5 w-full">
+
+<!-- 1. Dashboard (Gauge / Meter icon) -->
+<a href="dashboard.html" class="group relative flex items-center h-10 px-2.5 rounded-lg bg-blue-50 text-blue-600 transition-colors">
+<i data-lucide="gauge" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Dashboard</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Dashboard
+</span>
+</a>
+
+<!-- 2. Leads (Megaphone / Bullhorn icon) -->
+<a href="leads.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="megaphone" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Leads</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Leads
+</span>
+</a>
+
+<!-- 3. Projects (Briefcase icon) -->
+<a href="projects.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="briefcase" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Projects</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Projects
+</span>
+</a>
+
+<!-- NEW ITEM: Campaigns (Bar Chart / Activity icon) -->
+<a href="campaigns.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="bar-chart-3" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Campaigns</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Campaigns
+</span>
+</a>
+
+<!-- 4. Team (Users icon) -->
+<a href="team.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="users" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Team</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Team
+</span>
+</a>
+
+
+<!-- 5. Archives (Folder icon) -->
+<a href="archives.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="folders" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Archives</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Archives
+</span>
+</a>
+
+<!-- 6. CSV Upload (File-Spreadsheet / Document Upload icon) -->
+<a href="csv-upload.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="file-spreadsheet" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">CSV Upload</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+CSV Upload
+</span>
+</a>
+
+<!-- NEW ITEM: Reports & Analytics (Trending Up icon) -->
+<a href="analytics.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-sky-200 hover:bg-slate-100 hover:text-sky-100 transition-colors">
+<i data-lucide="line-chart" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Analytics</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Analytics
+</span>
+</a>
+
+</nav>
+</div>
+
+<!-- Bottom Section: Settings & User Profile -->
+<div class="flex flex-col space-y-1.5 w-full px-3">
+
+<!-- Account (User Cog / User Gear icon) -->
+<a href="account.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="user-cog" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Account</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Account
+</span>
+</a>
+
+<!-- Settings (Gear icon) -->
+<a href="settings.html" class="group relative flex items-center h-10 px-2.5 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors">
+<i data-lucide="settings" class="w-5 h-5 min-w-[1.25rem]"></i>
+<span x-show="expanded" class="ml-3 text-sm font-medium whitespace-nowrap overflow-hidden">Settings</span>
+<span x-show="!expanded" class="absolute left-14 bg-slate-900 text-white text-xs font-medium px-2 py-1 rounded shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+Settings
+</span>
+</a>
+</div>
+</aside>
+
+<!-- END SIDE MENU AREA -->
+
+
+<!-- START TOP BAR AREA -->
+
+<div 
+class="flex-1 flex flex-col min-h-screen transition-all duration-300 ease-in-out w-full min-w-0"
+:class="expanded ? 'pl-64' : 'pl-16'">
+
+<!-- STICKY HEADER -->
+<header class="h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-20 shadow-xs">
+
+<!-- Left side: Expand toggle button on header + Search -->
+<div class="flex items-center space-x-4 flex-1 max-w-md">
+<!-- Toggle button on top header bar -->
+<button 
+@click="expanded = !expanded" 
+class="p-2 rounded-lg text-blue-500 hover:bg-blue-100 hover:text-blue-800 transition-colors">
+<i data-lucide="menu" class="w-5 h-5"></i>
+</button>
+
+<div class="relative w-full">
+<i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+<input type="text" placeholder="Search leads, projects, or team members..." class="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all">
+</div>
+</div>
+
+<!-- Right Header Actions Container -->
+<div class="flex items-center space-x-3" 
+     x-data="{
+              // Temporary Prototype Navigation Group (Removed in final React build)
+        prototypeIcons: [
+                { id: 'project-control', label: 'Project Control', icon: 'sliders-horizontal', href: 'project-control.html' },
+        { id: 'project-checklist', label: 'Project Checklist', icon: 'list-checks', href: 'project-checklist.html' },
+        { id: 'project-review', label: 'Project Review', icon: 'circle-dashed-check', href: 'project-review.html' },
+                { id: 'login-page', label: 'User Login View', icon: 'key-round', href: 'login.html' },
+        { id: 'team-single', label: 'Single Team Member View', icon: 'user', href: 'team-member.html' },
+        { id: 'lead-single', label: 'Single Lead View', icon: 'megaphone', href: 'single-lead.html' },
+          { id: 'client-single', label: 'Single Client View', icon: 'file-user', href: 'single-client.html' },
+           { id: 'project-single', label: 'Single Project View', icon: 'folder-git-2', href: 'single-project.html' },
+            { id: 'niche-targeting', label: 'Niche and Targeting', icon: 'target', href: 'niche.html'},
+             { id: 'proposals', label: 'Proposals', icon: 'hand-helping', href: 'proposals.html'},
+            { id: 'invoices', label: 'Invoices and Billing', icon: 'receipt-text', href: 'invoices.html' }
+
+        ],
+
+       // Permanent Header Actions Group (Kept in final build)
+        permanentIcons: [
+         { id: 'money-payroll', label: 'Notifications', icon: 'circle-dollar-sign', href: 'payroll.html' },
+          { id: 'bell-notifications', label: 'Notifications', icon: 'bell', href: '#', count: 3 },
+          { id: 'envelope-messages', label: 'Messages', icon: 'mail', href: 'message.html', count: 5 }
+        ]
+     }">
+
+  <!-- GROUP 1: Prototype Nav Icons (Temporary) -->
+  <div class="flex items-center space-x-1 pr-2 border-r border-slate-200">
+    <template x-for="item in prototypeIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition-colors relative group">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+      </a>
+    </template>
+  </div>
+
+  <!-- GROUP 2: Permanent Header Icons (Bell Notifications & Message Envelope with Floating Badges) -->
+  <div class="flex items-center space-x-1 pr-1">
+    <template x-for="item in permanentIcons" :key="item.id">
+      <a :href="item.href" 
+         :title="item.label" 
+         class="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors relative">
+        <i :data-lucide="item.icon" class="w-5 h-5"></i>
+        
+        <!-- Floating Counter Badge -->
+        <span x-show="item.count > 0" 
+              class="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 bg-rose-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white leading-none shadow-2xs"
+              x-text="item.count">
+        </span>
+      </a>
+    </template>
+  </div>
+
+  <!-- New Lead Action Button -->
+  <a href="new-lead.html">
+    <button class="px-3.5 py-2 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-2xs flex items-center space-x-2 transition-colors">
+      <i data-lucide="plus" class="w-4 h-4"></i>
+      <span>New Lead</span>
+    </button>
+  </a>
+</div>
+</header>
+
+
+
+<!-- End HEADER Area -->
+
+
+
+
+
+
+<header class="bg-white/80 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+  <div class="flex items-center gap-3.5">
+    <!-- Avatar Badge -->
+    <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-bold flex items-center justify-center shadow-sm shrink-0">
+      SR
+      <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+    </div>
+    <div>
+      <div class="flex items-center gap-2">
+        <h1 class="font-bold text-base text-slate-900">Sales & Pipeline Portal</h1>
+        <span class="text-[10px] font-bold tracking-wide uppercase bg-emerald-50 text-emerald-700 border border-emerald-200/80 px-2 py-0.5 rounded-md">Sales Rep</span>
+      </div>
+      <p class="text-xs text-slate-500 mt-0.5">Manage lead funnels, track active proposals, and log client requirements.</p>
+    </div>
+  </div>
+
+ <!-- RIGHT SIDE: LIVE DATE & CLOCK -->
+    <div 
+        x-data="{ 
+            dateStr: '', 
+            timeStr: '',
+            updateClock() {
+                const now = new Date();
+                this.dateStr = now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+                this.timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+        }" 
+        x-init="updateClock(); setInterval(() => updateClock(), 1000)"
+        class="flex items-center gap-3 bg-slate-50/80 border border-slate-200/80 rounded-xl px-4 py-2 self-end sm:self-auto shrink-0 shadow-2xs"
+    >
+        <!-- Calendar Icon & Full Date -->
+        <div class="flex items-center gap-2 border-r border-slate-200/80 pr-3">
+            <div class="p-1.5 bg-sky-100/60 text-sky-600 rounded-lg">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+            </div>
+            <span class="text-xs font-semibold text-slate-700" x-text="dateStr || 'Thursday, Sep 24, 2026'">
+                Thursday, Sep 24, 2026
+            </span>
+        </div>
+
+        <!-- Clock Icon & Live Time -->
+        <div class="flex items-center gap-2">
+            <div class="p-1.5 bg-indigo-100/60 text-indigo-600 rounded-lg">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+            </div>
+            <span class="text-xs font-bold text-slate-800 font-mono tracking-tight" x-text="timeStr || '07:31:03 AM'">
+                07:31:03 AM
+            </span>
+        </div>
+    </div>
+
+</header>
+
+
+<main x-data="{
+    // Mode Toggle & Onboarding Guide Visibility
+    beginnerMode: true,
+    showOnboardingGuide: true,
+
+    // Modal & Drawer States
+    showAddModal: false,
+    selectedLead: null,
+
+    // Sample Leads Data
+    leads: [
+      { id: 'LD-101', name: 'Metro Cannabis Co.', contact: 'Dave M.', channel: 'FB Marketplace', location: 'Denver, CO', niche: 'Dispensary', step: 2, vibe: 'Sweet/Agreeable', quality: 'Good Client', temp: 'Hot', budgetTier: 'Small Business', budget: '$12,000', deadline: '3 Weeks', notes: 'Interested in e-commerce menu integration. Callback scheduled for 2 PM.' },
+      { id: 'LD-102', name: 'Velvet Lounge & Bar', contact: 'Marcus K.', channel: 'Instagram DM', location: 'Miami, FL', niche: 'Nightlife', step: 1, vibe: 'Strict/Unwavering', quality: 'Decent Client', temp: 'Warm', budgetTier: 'Startup', budget: '$6,500', deadline: 'ASAP', notes: 'DM sent about website revamp. Opened link twice.' },
+      { id: 'LD-103', name: 'Apex Roofing & Solar', contact: 'Sarah B.', channel: 'Cold Call', location: 'Atlanta, GA', niche: 'Construction', step: 4, vibe: 'Sweet/Agreeable', quality: 'Good Client', temp: 'Hot', budgetTier: 'Small Business', budget: '$18,500', deadline: '1 Month', notes: 'Consultation complete. Ready to pass off to Secretary for contract.' },
+      { id: 'LD-104', name: 'Luxe Hair & Spa', contact: 'Chloe T.', channel: 'In-Person', location: 'Columbus, OH', niche: 'Beauty/Retail', step: 3, vibe: 'Strict/Unwavering', quality: 'Bad Client', temp: 'Cold', budgetTier: 'Solo', budget: '$1,500', deadline: 'Unknown', notes: 'Too expensive for them right now. Ghosted call.' }
+    ],
+
+    // Simple, Beginner-Friendly 7-Step Definitions
+    sopSteps: [
+      { num: 1, name: 'Uncontacted', badgeBg: 'bg-slate-100 text-slate-800 border-slate-300', icon: 'user-plus', title: 'Step 1 — Fresh Prospect', desc: 'You haven\'t talked to them yet. Send a cold DM, email, or call.' },
+      { num: 2, name: 'Familiar', badgeBg: 'bg-sky-100 text-sky-800 border-sky-300', icon: 'message-circle', title: 'Step 2 — First Contact Made', desc: 'They know who we are. Warm them up and schedule a follow-up date.' },
+      { num: 3, name: 'Contempt', badgeBg: 'bg-rose-100 text-rose-800 border-rose-300', icon: 'slash', title: 'Step 3 — Not Right Now', desc: 'Ghosted, rude, or too expensive. Write down why and pause for 60 days.' },
+      { num: 4, name: 'Consulted', badgeBg: 'bg-amber-100 text-amber-800 border-amber-300', icon: 'phone-call', title: 'Step 4 — Meeting Done', desc: 'Got their budget & specs! Send details to Secretary to prep contract.' },
+      { num: 5, name: 'Trade', badgeBg: 'bg-purple-100 text-purple-800 border-purple-300', icon: 'repeat', title: 'Step 5 — In Team Hands', desc: 'Contract prepped/traded. Tech & design team take over building.' },
+      { num: 6, name: 'Onboarded', badgeBg: 'bg-emerald-100 text-emerald-800 border-emerald-300', icon: 'check-circle-2', title: 'Step 6 — Contract Signed (WIN!)', desc: 'Contract signed! Counts toward your 5-close goal. Commission starts.' },
+      { num: 7, name: 'Closed', badgeBg: 'bg-indigo-100 text-indigo-800 border-indigo-300', icon: 'award', title: 'Step 7 — Deal Paid in Full', desc: 'Project finished & client paid. Final commission unlocked.' }
+    ],
+
+    // Quick Add Lead Function
+    saveLead() {
+      if (!this.newLead.name) return;
+      this.leads.unshift({
+        id: 'LD-' + Math.floor(100 + Math.random() * 900),
+        name: this.newLead.name,
+        contact: 'New Prospect',
+        channel: this.newLead.channel,
+        location: this.newLead.location || 'Local',
+        niche: 'General Tech',
+        step: 1,
+        vibe: this.newLead.vibe,
+        quality: this.newLead.quality,
+        temp: 'Hot',
+        budgetTier: 'Startup',
+        budget: 'TBD',
+        deadline: 'TBD',
+        notes: this.newLead.notes || 'Fresh lead added.'
+      });
+      this.newLead = { name: '', channel: 'FB Marketplace', location: '', vibe: 'Neutral/Standard', quality: 'Good Client', notes: '' };
+      this.showAddModal = false;
+    },
+    newLead: { name: '', channel: 'FB Marketplace', location: '', vibe: 'Neutral/Standard', quality: 'Good Client', notes: '' }
+  }" 
+  class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-5 text-slate-800">
+
+  <!-- ================= TOP TOOLBAR: MODE TOGGLE & CONTROLS ================= -->
+  <div class="bg-white/70 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0 font-black text-xs">
+        SR
+      </div>
+      <div>
+        <h1 class="font-bold text-slate-900 text-sm sm:text-base leading-tight">Sales Rep Command Workbench</h1>
+        <p class="text-[11px] text-slate-500" x-text="beginnerMode ? '🔰 Beginner Mode: Extra guides & helpers enabled' : '⚡ Advanced Mode: Compact layout active'"></p>
+      </div>
+    </div>
+
+    <!-- Mode Switch Toggle -->
+    <div class="flex items-center gap-3 bg-slate-100/80 p-1.5 rounded-xl border border-slate-200/60 shrink-0">
+      <button @click="beginnerMode = true; showOnboardingGuide = true" 
+        :class="beginnerMode ? 'bg-white text-sky-700 shadow-xs font-bold' : 'text-slate-500 font-medium'"
+        class="px-3 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5">
+        <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+        <span>Beginner</span>
+      </button>
+      <button @click="beginnerMode = false; showOnboardingGuide = false" 
+        :class="!beginnerMode ? 'bg-white text-sky-700 shadow-xs font-bold' : 'text-slate-500 font-medium'"
+        class="px-3 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5">
+        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+        <span>Advanced</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= 1. SCORECARD & GOAL PROGRESS ================= -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-4 border border-white/80 shadow-xs flex items-center justify-between">
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Today's Action Items</p>
+        <p class="text-xl sm:text-2xl font-black text-slate-900 mt-0.5">8 Pending</p>
+        <span class="text-[10px] font-semibold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md inline-block mt-1">3 Callbacks Due</span>
+      </div>
+      <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+        <i data-lucide="phone-call" class="w-5 h-5"></i>
+      </div>
+    </div>
+
+    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-4 border border-white/80 shadow-xs flex items-center justify-between">
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">My Active Leads</p>
+        <p class="text-xl sm:text-2xl font-black text-sky-600 mt-0.5" x-text="leads.length"></p>
+        <span class="text-[10px] font-semibold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md inline-block mt-1">In Workflow</span>
+      </div>
+      <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+        <i data-lucide="users" class="w-5 h-5"></i>
+      </div>
+    </div>
+
+    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-4 border border-white/80 shadow-xs flex items-center justify-between">
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Monthly Wins</p>
+        <p class="text-xl sm:text-2xl font-black text-emerald-600 mt-0.5">3 / 5</p>
+        <div class="w-20 sm:w-24 bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
+          <div class="bg-emerald-500 h-full rounded-full" style="width: 60%"></div>
+        </div>
+      </div>
+      <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+        <i data-lucide="trophy" class="w-5 h-5"></i>
+      </div>
+    </div>
+
+    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-4 border border-white/80 shadow-xs flex items-center justify-between">
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Estimated Payout</p>
+        <p class="text-xl sm:text-2xl font-black text-indigo-600 mt-0.5">$3,450</p>
+        <span class="text-[10px] font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md inline-block mt-1">Locked Commission</span>
+      </div>
+      <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+        <i data-lucide="wallet" class="w-5 h-5"></i>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ================= 2. ACTION TOOLBOX & BEGINNER GUIDES ================= -->
+  <div x-data="{
+    // Action Tool Modal Toggle States
+    activeToolModal: null, // 'logContact', 'sendOffer', 'secretary'
+
+    // Form States for Tools
+    contactLog: { leadId: 'LD-101', type: 'Cold Call', outcome: 'Answered - Interested', notes: '' },
+    offerLog: { leadId: 'LD-101', package: 'Full Web & Branding ($12,000)', discount: 'None', sendVia: 'Email & PDF' },
+    handoffLog: { leadId: 'LD-103', priority: 'High Priority', contractNotes: 'Needs custom payment terms (50/50 split).' },
+
+    // Toast Notification State
+    toastMessage: '',
+    showToast(msg) {
+      this.toastMessage = msg;
+      setTimeout(() => { this.toastMessage = ''; }, 3000);
+    }
+  }" class="space-y-3">
+
+    <!-- TOOLBOX MAIN CONTAINER CARD -->
+    <div class="bg-white/70 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-white/80 shadow-xs space-y-3">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        
+        <!-- Header & Explanation Toggle -->
+        <div class="flex items-center justify-between sm:justify-start gap-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
+              <i data-lucide="wrench" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h2 class="font-bold text-sm sm:text-base text-slate-900 leading-tight">One-Touch Rep Toolbox</h2>
+              <p class="text-[11px] text-slate-500">Quick actions to log work, issue quotes, or transfer deals</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 sm:flex items-center gap-2">
+          
+          <!-- 1. ADD LEAD -->
+          <button @click="showAddModal = true" class="px-3.5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-all active:scale-95">
+            <i data-lucide="user-plus" class="w-4 h-4"></i>
+            <span>+ Add Lead</span>
+          </button>
+
+          <!-- 2. LOG CONTACT -->
+          <button @click="activeToolModal = 'logContact'" class="px-3.5 py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-200/80 text-indigo-700 font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-95">
+            <i data-lucide="phone-outgoing" class="w-4 h-4 text-indigo-600"></i>
+            <span>Log Contact</span>
+          </button>
+
+          <!-- 3. SEND OFFER -->
+          <button @click="activeToolModal = 'sendOffer'" class="px-3.5 py-2.5 rounded-xl bg-violet-50 hover:bg-violet-100 border border-violet-200/80 text-violet-700 font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-95">
+            <i data-lucide="calculator" class="w-4 h-4 text-violet-600"></i>
+            <span>Send Offer</span>
+          </button>
+
+          <!-- 4. PASS TO SECRETARY -->
+          <button @click="activeToolModal = 'secretary'" class="px-3.5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 text-emerald-700 font-bold text-xs flex items-center justify-center gap-2 transition-all active:scale-95">
+            <i data-lucide="arrow-right-left" class="w-4 h-4 text-emerald-600"></i>
+            <span>Secretary Handoff</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- BEGINNER GUIDE FOR TOOLBOX (COLLAPSIBLE / TOGGLEABLE) -->
+      <div x-show="beginnerMode" class="bg-slate-50/90 rounded-xl p-3 border border-slate-200/80 space-y-2">
+        <div class="flex items-center justify-between">
+          <p class="text-[11px] font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5 text-sky-600"></i> Toolbox Quick Guide (When & How to use each button)
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 text-[11px]">
+          
+          <!-- Add Lead Explanation -->
+          <div class="p-2 bg-white rounded-lg border border-slate-200">
+            <p class="font-bold text-sky-700 flex items-center gap-1">
+              <i data-lucide="user-plus" class="w-3 h-3"></i> + Add Lead
+            </p>
+            <p class="text-slate-600 mt-0.5"><strong>When:</strong> You find a fresh prospect online or on a call.</p>
+            <p class="text-slate-500 text-[10px] italic"><strong>Saves to:</strong> Active Leads Table (Step 1).</p>
+          </div>
+
+          <!-- Log Contact Explanation -->
+          <div class="p-2 bg-white rounded-lg border border-slate-200">
+            <p class="font-bold text-indigo-700 flex items-center gap-1">
+              <i data-lucide="phone-outgoing" class="w-3 h-3"></i> Log Contact
+            </p>
+            <p class="text-slate-600 mt-0.5"><strong>When:</strong> You finish a DM, cold call, or follow-up email.</p>
+            <p class="text-slate-500 text-[10px] italic"><strong>Saves to:</strong> Client's Activity Timeline & Updates Step 2.</p>
+          </div>
+
+          <!-- Send Offer Explanation -->
+          <div class="p-2 bg-white rounded-lg border border-slate-200">
+            <p class="font-bold text-violet-700 flex items-center gap-1">
+              <i data-lucide="calculator" class="w-3 h-3"></i> Send Offer
+            </p>
+            <p class="text-slate-600 mt-0.5"><strong>When:</strong> Client asks for pricing or a proposal quote.</p>
+            <p class="text-slate-500 text-[10px] italic"><strong>Saves to:</strong> Generates offer link & emails client automatically.</p>
+          </div>
+
+          <!-- Pass to Secretary Explanation -->
+          <div class="p-2 bg-white rounded-lg border border-slate-200">
+            <p class="font-bold text-emerald-700 flex items-center gap-1">
+              <i data-lucide="arrow-right-left" class="w-3 h-3"></i> Secretary Handoff
+            </p>
+            <p class="text-slate-600 mt-0.5"><strong>When:</strong> Meeting done (Step 4)! Client agreed to move forward.</p>
+            <p class="text-slate-500 text-[10px] italic"><strong>Saves to:</strong> Secretary Queue to prepare final contract.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION (FEEDBACK FOR ACTIONS) -->
+    <div x-show="toastMessage" x-transition x-cloak class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl text-xs font-bold flex items-center gap-2 border border-slate-700">
+      <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+      <span x-text="toastMessage"></span>
+    </div>
+
+    <!-- ================= MODAL 1: LOG CONTACT ================= -->
+    <div x-show="activeToolModal === 'logContact'" x-cloak class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+      <div @click.away="activeToolModal = null" class="bg-white rounded-2xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-xl border border-slate-100">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <div class="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
+              <i data-lucide="phone-outgoing" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-base">Log Call or DM Activity</h3>
+              <p class="text-[11px] text-slate-500">Record outreach details so the team knows the status</p>
+            </div>
+          </div>
+          <button @click="activeToolModal = null" class="text-slate-400 hover:text-slate-600">✕</button>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <!-- Select Lead -->
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Select Target Lead *</label>
+            <select x-model="contactLog.leadId" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white font-medium">
+              <template x-for="lead in leads" :key="lead.id">
+                <option :value="lead.id" x-text="`${lead.name} (${lead.contact})`"></option>
+              </template>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Channel Used</label>
+              <select x-model="contactLog.type" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+                <option>Cold Call</option>
+                <option>Instagram DM</option>
+                <option>FB Message</option>
+                <option>Email</option>
+                <option>In-Person Visit</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Call Outcome</label>
+              <select x-model="contactLog.outcome" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+                <option>Answered - Interested</option>
+                <option>Answered - Needs Callback</option>
+                <option>No Answer / Voicemail</option>
+                <option>Not Interested / Rejected</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Quick Note / Next Step</label>
+            <textarea x-model="contactLog.notes" rows="2" placeholder="e.g. Owner asked to call back Thursday at 3 PM..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 resize-none"></textarea>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2 border-t border-slate-100">
+          <button @click="activeToolModal = null" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">Cancel</button>
+          <button @click="activeToolModal = null; showToast('Contact activity logged & lead history updated!')" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs shadow-xs">Save Log</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MODAL 2: SEND OFFER ================= -->
+    <div x-show="activeToolModal === 'sendOffer'" x-cloak class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+      <div @click.away="activeToolModal = null" class="bg-white rounded-2xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-xl border border-slate-100">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <div class="p-2 bg-violet-50 text-violet-600 rounded-lg">
+              <i data-lucide="calculator" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-base">Send Quote / Price Offer</h3>
+              <p class="text-[11px] text-slate-500">Dispatch a pre-set pricing package directly to client</p>
+            </div>
+          </div>
+          <button @click="activeToolModal = null" class="text-slate-400 hover:text-slate-600">✕</button>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Select Target Lead *</label>
+            <select x-model="offerLog.leadId" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white font-medium">
+              <template x-for="lead in leads" :key="lead.id">
+                <option :value="lead.id" x-text="`${lead.name} (${lead.contact})`"></option>
+              </template>
+            </select>
+          </div>
+
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Package Tier & Price</label>
+            <select x-model="offerLog.package" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white font-medium">
+              <option>Starter Landing Page ($2,500)</option>
+              <option>Full Web & Branding ($6,500)</option>
+              <option>Enterprise App & Menu System ($12,000)</option>
+              <option>Custom Retainer Pitch ($18,500)</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Delivery Method</label>
+              <select x-model="offerLog.sendVia" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+                <option>Email PDF Link</option>
+                <option>SMS / WhatsApp Link</option>
+                <option>Copy Shareable Link</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-bold text-slate-700 block mb-1">Special Discount</label>
+              <select x-model="offerLog.discount" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+                <option>None (Standard Rate)</option>
+                <option>5% Early Signer Discount</option>
+                <option>10% Bundle Discount</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2 border-t border-slate-100">
+          <button @click="activeToolModal = null" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">Cancel</button>
+          <button @click="activeToolModal = null; showToast('Official Offer sent to client! Step set to Step 2/4.')" class="px-5 py-2.5 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl text-xs shadow-xs">Dispatch Offer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= MODAL 3: SECRETARY HANDOFF ================= -->
+    <div x-show="activeToolModal === 'secretary'" x-cloak class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+      <div @click.away="activeToolModal = null" class="bg-white rounded-2xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-xl border border-slate-100">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <div class="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+              <i data-lucide="arrow-right-left" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-base">Pass Lead to Secretary Desk</h3>
+              <p class="text-[11px] text-slate-500">Transfers consulted deals to admin team for contract prep</p>
+            </div>
+          </div>
+          <button @click="activeToolModal = null" class="text-slate-400 hover:text-slate-600">✕</button>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3 bg-emerald-50/80 border border-emerald-200/80 rounded-xl text-emerald-900 text-[11px] leading-relaxed">
+            <strong>💡 How Handoff Works:</strong> Once you complete a consultation (Step 4), use this tool to transfer the lead details. The Secretary will draft the official contract and send it to the client for signature (Step 6 Win!).
+          </div>
+
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Select Consulted Lead *</label>
+            <select x-model="handoffLog.leadId" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white font-medium">
+              <template x-for="lead in leads" :key="lead.id">
+                <option :value="lead.id" x-text="`${lead.name} — Current Step: ${lead.step}`"></option>
+              </template>
+            </select>
+          </div>
+
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Contract Prep Notes for Secretary</label>
+            <textarea x-model="handoffLog.contractNotes" rows="2" placeholder="e.g. Include 50% upfront payment term, add domain registration add-on..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none"></textarea>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-end gap-2 border-t border-slate-100">
+          <button @click="activeToolModal = null" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">Cancel</button>
+          <button @click="activeToolModal = null; showToast('Lead transferred to Secretary Queue! Step moved to Step 5.')" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs shadow-xs">Complete Handoff</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- ================= 3. COLLAPSIBLE BEGINNER ONBOARDING & KEY GUIDE ================= -->
+  <div x-show="showOnboardingGuide && beginnerMode" x-transition class="bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-violet-500/10 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-sky-200/80 shadow-xs space-y-4">
+    <div class="flex items-center justify-between border-b border-sky-200/60 pb-3">
+      <div class="flex items-center gap-2">
+        <div class="p-1.5 bg-sky-600 text-white rounded-lg">
+          <i data-lucide="compass" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h2 class="font-black text-slate-900 text-sm sm:text-base">Sales Rep Cheat Sheet & SOP Guide</h2>
+          <p class="text-[11px] text-slate-600">New here? Here is how you move leads from first talk to commission payout.</p>
+        </div>
+      </div>
+      <button @click="showOnboardingGuide = false" class="text-xs text-slate-500 hover:text-slate-800 font-bold bg-white/80 px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
+        ✕ Hide Guide
+      </button>
+    </div>
+
+    <!-- 7 STEPS VISUAL EXPLAINER GRID -->
+    <div class="space-y-2">
+      <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">The 7 Workflow Steps (Move clients left to right)</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+        <template x-for="step in sopSteps" :key="step.num">
+          <div class="p-3 bg-white/80 rounded-xl border border-slate-200/80 space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold border" :class="step.badgeBg" x-text="`Step ${step.num}`"></span>
+              <span class="text-[10px] font-bold text-slate-400" x-text="step.name"></span>
+            </div>
+            <p class="font-bold text-xs text-slate-900" x-text="step.title"></p>
+            <p class="text-[11px] text-slate-600 leading-snug" x-text="step.desc"></p>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- CLIENT VIBES & LEAD HEAT EXPLAINER -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2 border-t border-sky-200/60">
+      <!-- Vibe Legend -->
+      <div class="p-3 bg-white/80 rounded-xl border border-slate-200/80 space-y-2">
+        <p class="text-[11px] font-bold uppercase text-slate-500 flex items-center gap-1.5">
+          <i data-lucide="smile" class="w-3.5 h-3.5 text-indigo-600"></i> Client Personality Badges (Vibe Check)
+        </p>
+        <div class="grid grid-cols-3 gap-1.5 text-[11px]">
+          <div class="p-1.5 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-900">
+            <strong>😊 Sweet:</strong> Flexible, open to upsells.
+          </div>
+          <div class="p-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
+            <strong>😐 Neutral:</strong> Standard & steady pace.
+          </div>
+          <div class="p-1.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900">
+            <strong>😤 Strict:</strong> Firm dates, needs clear proof.
+          </div>
+        </div>
+      </div>
+
+      <!-- Heat Legend -->
+      <div class="p-3 bg-white/80 rounded-xl border border-slate-200/80 space-y-2">
+        <p class="text-[11px] font-bold uppercase text-slate-500 flex items-center gap-1.5">
+          <i data-lucide="flame" class="w-3.5 h-3.5 text-rose-500"></i> Follow-Up Heat Ratings
+        </p>
+        <div class="grid grid-cols-3 gap-1.5 text-[11px]">
+          <div class="p-1.5 bg-rose-50 border border-rose-200 rounded-lg text-rose-900">
+            <strong>🔥 Hot:</strong> Ready to buy! Call today.
+          </div>
+          <div class="p-1.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-900">
+            <strong>☀️ Warm:</strong> Friendly, check weekly.
+          </div>
+          <div class="p-1.5 bg-slate-100 border border-slate-200 rounded-lg text-slate-700">
+            <strong>❄️ Cold:</strong> Rejection, pause 60 days.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to show guide if hidden -->
+  <div x-show="!showOnboardingGuide && beginnerMode" class="flex justify-end">
+    <button @click="showOnboardingGuide = true" class="text-xs font-bold text-sky-700 bg-sky-50 hover:bg-sky-100 px-3 py-1.5 rounded-xl border border-sky-200 flex items-center gap-1">
+      <i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Show SOP Guide & Cheat Sheet
+    </button>
+  </div>
+
+
+
+
+
+
+  <!-- ================= 4. MAIN WORKING AREA ================= -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <!-- LEFT 2-COLUMNS: Active Leads & Niche Tool -->
+    <div class="lg:col-span-2 space-y-6">
+
+      <!-- ACTIVE LEADS WORKFLOW TABLE -->
+      <div class="bg-white/70 backdrop-blur-md rounded-2xl border border-white/80 shadow-xs overflow-hidden">
+        <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="layers" class="w-5 h-5 text-indigo-600"></i>
+            <div>
+              <h2 class="font-bold text-slate-900 text-sm sm:text-base">Active Lead Tracker</h2>
+              <p x-show="beginnerMode" class="text-[11px] text-slate-400">People you are currently talking to or following up with</p>
+            </div>
+          </div>
+          <span class="text-xs font-semibold text-slate-400" x-text="`${leads.length} Active`"></span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50/80 text-slate-400 font-bold uppercase tracking-wider border-b border-slate-100">
+              <tr>
+                <th class="p-3.5">Lead & Channel</th>
+                <th class="p-3.5">7-Step Progress</th>
+                <th class="p-3.5">Vibe / Priority</th>
+                <th class="p-3.5 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <template x-for="(lead, index) in leads" :key="lead.id">
+                <tr :class="index % 2 === 0 ? 'bg-white/80' : 'bg-slate-50/50'" class="hover:bg-sky-50/50 transition-colors">
+                  
+                  <!-- Name & Outreach Source -->
+                  <td class="p-3.5">
+                    <div class="font-bold text-slate-900 text-sm" x-text="lead.name"></div>
+                    <div class="flex items-center gap-2 text-[10px] text-slate-500 mt-0.5">
+                      <span class="font-semibold text-sky-600" x-text="lead.channel"></span>
+                      <span>•</span>
+                      <span x-text="lead.location"></span>
+                    </div>
+                  </td>
+
+                  <!-- 7-Step Badge with Inline Beginner Helper -->
+                  <td class="p-3.5">
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold border"
+                      :class="{
+                        'bg-slate-100 text-slate-700 border-slate-200': lead.step === 1,
+                        'bg-sky-50 text-sky-700 border-sky-200': lead.step === 2,
+                        'bg-rose-50 text-rose-700 border-rose-200': lead.step === 3,
+                        'bg-amber-50 text-amber-700 border-amber-200': lead.step === 4,
+                        'bg-purple-50 text-purple-700 border-purple-200': lead.step === 5,
+                        'bg-emerald-50 text-emerald-700 border-emerald-200': lead.step >= 6
+                      }">
+                      <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                      <span x-text="`${lead.step}. ${sopSteps[lead.step - 1].name}`"></span>
+                    </div>
+                    <!-- Beginner Hint String -->
+                    <p x-show="beginnerMode" class="text-[10px] text-slate-400 mt-0.5" x-text="
+                      lead.step === 1 ? 'Needs first touch' :
+                      lead.step === 2 ? 'Warm callback set' :
+                      lead.step === 3 ? 'Paused / Low priority' :
+                      lead.step === 4 ? 'Ready for Secretary!' : 'In build pipeline'
+                    "></p>
+                  </td>
+
+                  <!-- Vibe & Quality -->
+                  <td class="p-3.5 space-y-1">
+                    <div>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold inline-block"
+                        :class="{
+                          'bg-emerald-100 text-emerald-800': lead.vibe.includes('Sweet'),
+                          'bg-slate-100 text-slate-700': lead.vibe.includes('Neutral'),
+                          'bg-amber-100 text-amber-800': lead.vibe.includes('Strict')
+                        }" x-text="lead.vibe"></span>
+                    </div>
+                    <div class="text-[10px] font-semibold text-slate-500" x-text="lead.quality"></div>
+                  </td>
+
+                  <!-- Open Lead Drawer -->
+                  <td class="p-3.5 text-right">
+                    <button @click="selectedLead = lead" class="px-3 py-2 bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-sky-700 font-bold rounded-xl transition-colors inline-flex items-center gap-1">
+                      <span>Update</span>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TARGET NICHE & LOCATION FINDER WIDGET -->
+      <div class="bg-white/70 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <i data-lucide="compass" class="w-5 h-5 text-sky-600"></i>
+            <div>
+              <h2 class="font-bold text-slate-900 text-sm sm:text-base">Target Niche & Location Finder</h2>
+              <p x-show="beginnerMode" class="text-[11px] text-slate-400">Pick an industry and city hotspot to start pitching today</p>
+            </div>
+          </div>
+          <button class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold transition-colors">
+            Expand Tool
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="space-y-1">
+            <label class="text-[10px] font-bold uppercase text-slate-400">1. Industry Niche</label>
+            <select class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-white/80 font-medium focus:ring-1 focus:ring-sky-500">
+              <option>🌿 Cannabis / Dispensaries</option>
+              <option>🍸 Nightclubs & Bars</option>
+              <option>🔨 Construction & Roofing</option>
+              <option>⚖️ Law Firms</option>
+              <option>🛍️ E-Commerce</option>
+            </select>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-[10px] font-bold uppercase text-slate-400">2. Target Hotspot</label>
+            <select class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-white/80 font-medium focus:ring-1 focus:ring-sky-500">
+              <option>Denver, CO (Hotspot)</option>
+              <option>Los Angeles, CA</option>
+              <option>Miami, FL</option>
+              <option>Atlanta, GA</option>
+              <option>Columbus, OH</option>
+            </select>
+          </div>
+
+          <!-- Active Action Result Button -->
+          <div class="space-y-1">
+            <label class="text-[10px] font-bold uppercase text-slate-400">3. Suggested Outreach</label>
+            <button class="w-full p-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs flex items-center justify-between transition-colors shadow-2xs">
+              <span class="truncate">Instagram DMs & Calls</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 shrink-0 ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDEBAR: Hot/Warm/Cold Follow-Ups List -->
+    <div class="space-y-6">
+
+      <!-- FOLLOW-UP QUEUE CARD -->
+      <div class="bg-white/70 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/80 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2">
+            <i data-lucide="clock" class="w-5 h-5 text-amber-500"></i>
+            <div>
+              <h2 class="font-bold text-slate-900 text-sm sm:text-base">Follow-Up List</h2>
+              <p x-show="beginnerMode" class="text-[11px] text-slate-400">Who to call back based on priority</p>
+            </div>
+          </div>
+          <span class="text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full">Sorted by Heat</span>
+        </div>
+
+        <div class="space-y-3">
+          <!-- HOT FOLLOW-UP -->
+          <div class="p-3 bg-rose-50/60 rounded-xl border border-rose-100 space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 bg-rose-500 text-white font-black text-[9px] rounded-md uppercase tracking-wider">🔥 Hot Lead</span>
+              <span class="text-[10px] font-bold text-rose-700">Today @ 2:00 PM</span>
+            </div>
+            <p class="font-bold text-xs text-slate-900">Metro Cannabis Co. (Dave M.)</p>
+            <p class="text-[11px] text-slate-600">Send updated $12k offer & menu overview.</p>
+          </div>
+
+          <!-- WARM FOLLOW-UP -->
+          <div class="p-3 bg-amber-50/60 rounded-xl border border-amber-100 space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 bg-amber-500 text-white font-black text-[9px] rounded-md uppercase tracking-wider">☀️ Warm Check-In</span>
+              <span class="text-[10px] font-bold text-amber-700">Tomorrow</span>
+            </div>
+            <p class="font-bold text-xs text-slate-900">Velvet Lounge & Bar</p>
+            <p class="text-[11px] text-slate-600">Follow up on Instagram DM regarding site revamp.</p>
+          </div>
+
+          <!-- COLD FOLLOW-UP -->
+          <div class="p-3 bg-slate-100/70 rounded-xl border border-slate-200/80 space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 bg-slate-500 text-white font-black text-[9px] rounded-md uppercase tracking-wider">❄️ Cold Lead</span>
+              <span class="text-[10px] font-bold text-slate-500">In 30 Days</span>
+            </div>
+            <p class="font-bold text-xs text-slate-900">Luxe Hair & Spa</p>
+            <p class="text-[11px] text-slate-500">Ghosted call. Re-engage next month with a lower offer.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= 5. QUICK ADD LEAD MODAL ================= -->
+  <div x-show="showAddModal" x-cloak class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4">
+    <div @click.away="showAddModal = false" class="bg-white rounded-2xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-xl border border-slate-100">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="user-plus" class="w-5 h-5 text-sky-600"></i> Quick Add New Lead
+        </h3>
+        <button @click="showAddModal = false" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Business Name *</label>
+          <input x-model="newLead.name" type="text" placeholder="e.g. Apex Logistics" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-sky-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Outreach Source</label>
+            <select x-model="newLead.channel" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+              <option>FB Marketplace</option>
+              <option>Cold Call</option>
+              <option>Instagram DM</option>
+              <option>Cold Email</option>
+              <option>In-Person</option>
+              <option>Upwork/Fiverr</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">City / State</label>
+            <input x-model="newLead.location" type="text" placeholder="e.g. Denver, CO" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-sky-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Personality Vibe</label>
+            <select x-model="newLead.vibe" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+              <option>😊 Sweet/Agreeable</option>
+              <option>😐 Neutral/Standard</option>
+              <option>😤 Strict/Unwavering</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Client Quality</label>
+            <select x-model="newLead.quality" class="w-full p-2.5 rounded-xl border border-slate-200 bg-white">
+              <option>⚡ Good Client</option>
+              <option>🐢 Decent Client</option>
+              <option>🚫 Bad Client</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-slate-700 block mb-1">Call / DM Notes</label>
+          <textarea x-model="newLead.notes" rows="2" placeholder="What did you talk about?" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-1 focus:ring-sky-500 resize-none"></textarea>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-end gap-2">
+        <button @click="showAddModal = false" class="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl">Cancel</button>
+        <button @click="saveLead()" class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl shadow-xs">Save Lead</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 6. SINGLE LEAD DRAWER / MODAL ================= -->
+  <div x-show="selectedLead" x-cloak class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-xs flex justify-end">
+    <div @click.away="selectedLead = null" class="bg-white max-w-lg w-full h-full overflow-y-auto p-5 sm:p-6 space-y-6 shadow-2xl border-l border-slate-200">
+      
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-sky-600" x-text="selectedLead?.id"></span>
+          <h2 class="text-xl font-bold text-slate-900" x-text="selectedLead?.name"></h2>
+          <p class="text-xs text-slate-400" x-text="`Contact: ${selectedLead?.contact} • ${selectedLead?.location}`"></p>
+        </div>
+        <button @click="selectedLead = null" class="p-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-500">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Large Interactive Step Progress Tracker -->
+      <div class="space-y-2">
+        <label class="text-[11px] font-bold uppercase text-slate-400">Update Lead Step (Click to change)</label>
+        <div class="grid grid-cols-1 gap-1.5">
+          <template x-for="(step, i) in sopSteps" :key="step.num">
+            <button @click="selectedLead.step = step.num"
+              class="w-full text-left p-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between"
+              :class="selectedLead?.step === step.num ? 'bg-sky-600 text-white shadow-xs' : 'bg-slate-50 hover:bg-slate-100 text-slate-700'">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-[10px]" x-text="step.num"></span>
+                <span x-text="step.name"></span>
+              </div>
+              <span class="text-[10px] opacity-80" x-text="selectedLead?.step === step.num ? 'Active Step' : ''"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Vibe & Priority -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+          <p class="text-[10px] font-bold text-slate-400 uppercase">Personality</p>
+          <p class="font-bold text-xs text-slate-800 mt-1" x-text="selectedLead?.vibe"></p>
+        </div>
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+          <p class="text-[10px] font-bold text-slate-400 uppercase">Priority Level</p>
+          <p class="font-bold text-xs text-slate-800 mt-1" x-text="selectedLead?.quality"></p>
+        </div>
+      </div>
+
+      <!-- Stage 4+ Secretary Hand-Off Button -->
+      <div x-show="selectedLead?.step === 4" class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 space-y-2">
+        <p class="text-xs font-bold text-emerald-900">Consultation Completed!</p>
+        <p class="text-[11px] text-emerald-700">Ready to pass this client to the secretary so they can prep the contract and start onboarding.</p>
+        <button class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-2xs">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Hand Off to Secretary</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+
+</body>
+</html>

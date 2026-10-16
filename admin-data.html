@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Data Control & Schema Sandbox</title>
+  <link rel="stylesheet" href="admin-data.css">
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<!-- Alpine.js (Must be in <head>) -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<script>
+document.addEventListener('alpine:initialized', () => {
+lucide.createIcons();
+});
+
+// Re-render icons on Alpine changes
+document.addEventListener('alpine:updated', () => {
+lucide.createIcons();
+});
+</script>  
+<body class="overflow-x-hidden bg-slate-50 text-slate-800 antialiased min-h-screen" x-data="{ expanded: false }">
+
+
+
+<!-- Back to Dashboard Link -->
+<a href="dashboard.html" class="inline-flex items-center gap-2 mt-4 ml-6 mb-5 px-3 py-1.5 rounded-lg text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-colors">
+  <i data-lucide="arrow-left" class="w-5 h-5"></i>
+  <span>Back to Dashboard</span>
+</a>
+
+
+
+<main class="admin-wrapper">
+    
+    <!-- Page Title -->
+    <header class="admin-header">
+      <h1>Data Control Sandbox</h1>
+      <p>Isolated schema & payload inspector for React state migration.</p>
+    </header>
+
+    <!-- Context Page Tabs (Pure CSS CSS-Radio Driven) -->
+    <div class="tab-container">
+      
+      <input type="radio" id="tab-projects" name="context-tabs" checked>
+      <label for="tab-projects" class="tab-label">Projects Hub</label>
+
+      <input type="radio" id="tab-client" name="context-tabs">
+      <label for="tab-client" class="tab-label">Client Details</label>
+
+      <input type="radio" id="tab-team" name="context-tabs">
+      <label for="tab-team" class="tab-label">Team & Account</label>
+
+      <!-- TAB 1: PROJECTS HUB CONTEXT -->
+      <section class="tab-content" id="content-projects">
+        
+        <!-- Case 1: Table View for Array Listings -->
+        <div class="data-card">
+          <div class="card-header">
+            <h2>Active Projects Array Schema</h2>
+            <span class="status-pill active">5 Items</span>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Project Name</th>
+                <th>Client</th>
+                <th>Cat / Subcat</th>
+                <th>Budget</th>
+                <th>Lead</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Apex Storefront</td>
+                <td>Apex Retail Solutions</td>
+                <td>web / Ecommerce</td>
+                <td>$12,500</td>
+                <td>Gerry V.</td>
+                <td>65%</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Brand Refresh & Assets</td>
+                <td>Nova Dynamics</td>
+                <td>design / Vector Art</td>
+                <td>$3,400</td>
+                <td>Connie R.</td>
+                <td>40%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Case 2: Interactive Form Input Fields State Check -->
+        <div class="data-card">
+          <div class="card-header">
+            <h2>Page Filter & Search State Props</h2>
+          </div>
+          
+          <div class="form-grid">
+            <div class="input-group">
+              <label>Active Category Filter</label>
+              <input type="text" value="web" readonly>
+            </div>
+            <div class="input-group">
+              <label>Active Subcategory Filter</label>
+              <input type="text" value="all" readonly>
+            </div>
+            <div class="input-group">
+              <label>Search Query String</label>
+              <input type="text" value="Apex" readonly>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- TAB 2: SINGLE CLIENT DETAILS CONTEXT -->
+      <section class="tab-content" id="content-client">
+        
+        <!-- Case 3: Key-Value Card Grid for Single Profile Objects -->
+        <div class="data-card">
+          <div class="card-header">
+            <h2>Client Overview Object</h2>
+            <span class="status-pill active">Entity #802</span>
+          </div>
+
+          <div class="key-value-grid">
+            <div class="kv-item">
+              <span class="kv-key">Company Name</span>
+              <span class="kv-val">Apex Retail Solutions</span>
+            </div>
+            <div class="kv-item">
+              <span class="kv-key">Lifetime Value (LTV)</span>
+              <span class="kv-val">$48,500</span>
+            </div>
+            <div class="kv-item">
+              <span class="kv-key">Health Score</span>
+              <span class="kv-val">98% (Excellent)</span>
+            </div>
+            <div class="kv-item">
+              <span class="kv-key">Account Owner</span>
+              <span class="kv-val">Tupen S.</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- TAB 3: TEAM & ACCOUNT CONTEXT -->
+      <section class="tab-content" id="content-team">
+        <div class="data-card">
+          <div class="card-header">
+            <h2>Team Roster Array</h2>
+            <span class="status-pill closed">3 Members</span>
+          </div>
+          <p class="muted-text">Team roster schema properties listed here...</p>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
